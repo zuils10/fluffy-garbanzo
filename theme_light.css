@@ -1,0 +1,114 @@
+@import url(//fonts.googleapis.com/css?family=Inconsolata);
+body {
+    font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    background-color: #D9C6C2;
+    color: #0f0f0f;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+a {
+    color: inherit;
+}
+
+input {
+    background-color: #baad91;
+    border: 0;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    width: auto;
+    max-width: 150px;
+}
+
+textarea {
+    font-family: 'Inconsolata', monospace;
+    font-size: inherit;
+}
+
+#inputTab {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 412px;
+}
+
+#inputTab li {
+    background-color: #E36F0C;
+    border: 0.1px solid #E36F0C;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    width: 100%;
+}
+
+#inputTable,
+#inputTable td {
+    border: 1px solid #E36F0C;
+    border-spacing: 0;
+    margin: 0;
+    padding: 3px;
+}
+
+.tabcontent table,
+.tabcontent th,
+.tabcontent td {
+    border: 1px solid #E36F0C;
+    border-spacing: 0;
+    padding: 3px;
+}
+
+#playstyleSelect {
+    background-color: #BAAD91;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.number {
+    text-align: right;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#decodedData {
+    background-color: inherit;
+    border: 0.1px solid #E36F0C;
+    color: inherit;
+}
+
+#tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#tabs li {
+    cursor: pointer;
+    display: inline-block;
+    border: 0.1px solid #E36F0C;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    width: 194px;
+}
+
+#tabs p {
+    width: 300px;
+    text-align: right;
+}
+
+#tabs li.current {
+    background-color: #E36F0C;
+}
+
+.tabcontent {
+    display: none;
+}
+
+.tabcontent.current {
+    display: inherit;
+}
