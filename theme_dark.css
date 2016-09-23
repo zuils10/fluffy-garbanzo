@@ -1,4 +1,4 @@
-@import url(//fonts.googleapis.com/css?family=Inconsolata);
+@import url(http://fonts.googleapis.com/css?family=Inconsolata);
 body {
     font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
     background-color: #262E3D;
@@ -13,6 +13,11 @@ a {
     color: inherit;
 }
 
+p,
+ul {
+    margin: 3px;
+}
+
 input {
     background-color: #45526e;
     border: 0;
@@ -25,6 +30,14 @@ input {
 
 textarea {
     font-family: 'Inconsolata', monospace;
+    font-size: inherit;
+}
+
+button {
+    background-color: #1C90F3;
+    border: 0.1px solid #1C90F3;
+    border-radius: 3px;
+    color: inherit;
     font-size: inherit;
 }
 
@@ -60,11 +73,24 @@ textarea {
     padding: 3px;
 }
 
-#playstyleSelect {
+select {
     background-color: #45526e;
     color: inherit;
     font-family: inherit;
     font-size: inherit;
+    border: none;
+}
+
+#hybridRatio {
+    width: 3em;
+}
+
+#otherAncientsLower {
+    width: 2.1em;
+}
+
+#anctable tr:hover {
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .number {
