@@ -1,3 +1,4 @@
+        function getHash(string) {
             var charaters = string.split();
             charaters.sort();
             var sortedCharaters = charaters.join();
