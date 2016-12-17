@@ -674,7 +674,7 @@ function showBossRaidData() {
 //ELEMENTS' BEHAVIORS
 $(document).ready(function() {
     $("#themeChoice input").on("change", function() {
-        $("head #themeLink").prop("href", "https://rawgit.com/graceoflives/fluffy-garbanzo/master/theme_" + $("#themeChoice input[name=\"theme\"]:checked").val() + ".css");
+        $("head #themeLink").prop("href", "theme_" + $("#themeChoice input[name=\"theme\"]:checked").val() + ".css");
     });
     $("#anctable").append("<tr><td></td><td class=\"number\"></td><td class=\"number\"></td><td class=\"number bold\"></td><td></td></tr>");
     var input = document.createElement("input");
