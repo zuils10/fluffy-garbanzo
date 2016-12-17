@@ -42,5 +42,5 @@ function autoLevelAncient() {
             result.ancients.ancients[k].spentHeroSouls = Decimal(result.ancients.ancients[k].spentHeroSouls).plus(ancient[k].CostToOptimal).toExponential().toString().replace("+", "");;
             result.heroSouls = Decimal(result.heroSouls).minus(ancient[k].CostToOptimal).toExponential().toString().replace("+", "");;
         }
-    return encodeData(JSON.stringify(result));
+    console.log(encodeData(JSON.stringify(result)));
 }
