@@ -37,8 +37,8 @@ function autoLevelAncient() {
     alert("You have used the option to autolevel your ancients. Notes that this is considered save-editing. Please make back-ups save and use with caution.");
     var result = rawData;
     for (var k in ancient)
-        if (ancient[k].Level.equals(0) == false) {
-            result.ancients.ancients[k].level = Decimal.max(ancient[k].OptimalLevel, ancient[k].Level).toExponential().toString().replace("+", "");;
+        if (ancient[k].Visible == "true") {
+            result.ancients.ancients[k].level = ancient[k].OptimalLevel.toExponential().toString().replace("+", "");;
             result.ancients.ancients[k].spentHeroSouls = Decimal(result.ancients.ancients[k].spentHeroSouls).plus(ancient[k].CostToOptimal).toExponential().toString().replace("+", "");;
             result.heroSouls = Decimal(result.heroSouls).minus(ancient[k].CostToOptimal).toExponential().toString().replace("+", "");;
         }
