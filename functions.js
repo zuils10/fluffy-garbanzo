@@ -784,7 +784,7 @@ $(document).ready(function() {
         showASGain(additionalASShow);
     });
     $("#buttonMoreAS").on("click", function() {
-        additionalASShow = Decimal.min(additionalASShow.plus(1), 17);
+        additionalASShow = Decimal.min(additionalASShow.plus(1), 27);
         showASGain(additionalASShow);
     });
 });
