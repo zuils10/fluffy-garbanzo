@@ -38,6 +38,7 @@ function autoLevelAncient() {
     var result = rawData;
     for (var k in ancient)
         if (ancient[k].Visible == "true") {
+            alert(ancient[k].Name);
             result.ancients.ancients[k].level = ancient[k].OptimalLevel.toExponential().toString().replace("+", "");;
             result.ancients.ancients[k].spentHeroSouls = Decimal(result.ancients.ancients[k].spentHeroSouls).plus(ancient[k].CostToOptimal).toExponential().toString().replace("+", "");;
             result.heroSouls = Decimal(result.heroSouls).minus(ancient[k].CostToOptimal).toExponential().toString().replace("+", "");;
