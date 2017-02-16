@@ -238,10 +238,6 @@ function approSum(n) {
 }
 
 //FORMAT FUNCTIONS
-function decFormatGrouping(num) {
-    return num.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
 function decFormatNoGrouping(num) {
     return num.toFixed(0);
 }
@@ -619,12 +615,10 @@ function optimizeAncient() {
     tb.rows[1].cells[0].innerHTML = "Hero Souls";
     $("#manualHS").val(decFormatNoGrouping(hs));
     tb.rows[1].cells[2].innerHTML = sciFormat(hs.minus(spentHS), 4);
-    tb.rows[1].cells[2].setAttribute("title", decFormatGrouping(hs.minus(spentHS)));
     tb.rows[1].cells[3].innerHTML = "-" + sciFormat(spentHS, 4);
-    tb.rows[1].cells[3].setAttribute("title", "-" + decFormatGrouping(spentHS));
     if (ancientTableShow == 0) {
         for (var j = 0; j < 26; j++) {
-            $("#anctable").append("<tr style=\"display: table-row;\"><td></td><td class=\"number\"></td><td class=\"number\"></td><td><input id=\"" + j + "\" class=\"rs number bold \" type=\"text\"></input></td><td class=\"number\"></td></tr>");
+            $("#anctable").append("<tr style=\"display: table-row;\"><td></td><td class=\"text-right\"></td><td class=\"text-right\"></td><td><input id=\"" + j + "\" class=\"form-control rs text-right bold \" type=\"text\"></input></td><td class=\"text-right\"></td></tr>");
         }
         $(".rs").map(function() {
             $(this).focus(function() {
@@ -640,12 +634,9 @@ function optimizeAncient() {
     for (var k in ancientArr) {
         tb.rows[i].cells[0].innerHTML = ancientArr[k].Name;
         tb.rows[i].cells[1].innerHTML = sciFormat(ancientArr[k].Level, 4);
-        tb.rows[i].cells[1].setAttribute("title", decFormatGrouping(ancientArr[k].Level));
         tb.rows[i].cells[2].innerHTML = sciFormat(ancientArr[k].OptimalLevel, 4);
-        tb.rows[i].cells[2].setAttribute("title", decFormatGrouping(ancientArr[k].OptimalLevel));
         tb.rows[i].cells[3].firstChild.value = sciFormat(Decimal.max(0, ancientArr[k].OptimalLevel.minus(ancientArr[k].Level)), 4);
         tb.rows[i].cells[4].innerHTML = sciFormat(ancientArr[k].CostToOptimal, 4);
-        tb.rows[i].cells[4].setAttribute("title", decFormatGrouping(ancientArr[k].CostToOptimal));
         if ((ancientArr[k].Visible == "false") || (ancientArr[k].Level == 0))
             tb.rows[i].style.display = "none";
         else
@@ -673,12 +664,10 @@ function showBossRaidData() {
 
 //ELEMENTS' BEHAVIORS
 $(document).ready(function() {
-    $("#themeChoice input").on("change", function() {
-        $("head #themeLink").prop("href", "theme_" + $("#themeChoice input[name=\"theme\"]:checked").val() + ".css");
-    });
-    $("#anctable").append("<tr><td></td><td class=\"number\"></td><td class=\"number\"></td><td class=\"number bold\"></td><td></td></tr>");
+    $("#anctable").append("<tr><td></td><td class=\"text-right\"></td><td class=\"text-right\"></td><td class=\"text-right bold\"></td><td></td></tr>");
     var input = document.createElement("input");
-    input.style = "text-align:right";
+    input.className = "form-control";
+    input.style = "text-align: right";
     input.type = "text";
     input.placeholder = "Your desire HS (current HS if ignored)";
     input.id = "manualHS";
@@ -715,13 +704,7 @@ $(document).ready(function() {
     $(document).on("click", "input", function() {
         $(this).select();
     });
-    $("#tabs li").click(function() {
-        var tabData = $(this).attr("data");
-        $("#tabs li").removeClass("current");
-        $(this).addClass("current");
-        $(".tabcontent").removeClass("current");
-        $("#" + tabData).addClass("current");
-    });
+    
     $("#playstyleSelect").change(function() {
         if ($(this).val() == "idle") {
             $("#hybridRatioContainer").hide();
