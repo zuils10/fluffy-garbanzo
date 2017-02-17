@@ -327,6 +327,7 @@ function showASGain(moreAS) {
     for (var k in rawData.ancients.ancients)
         totalHSEarned = totalHSEarned.plus(Decimal(rawData.ancients.ancients[k].spentHeroSouls));
     var currentASGain = Decimal.log10(totalHSEarned).times(5).floor().minus(as);
+    $("#asGainIfTranscend").text(currentASGain.toString());
     for (var k = 1; k < 4; k++) {
         $("#asGain" + k).text(currentASGain.plus(k).plus(moreAS).toString());
         $("#hsToGain" + k).text(sciFormat(Decimal(10).pow(as.plus(currentASGain).plus(k).plus(moreAS).div(5)).minus(totalHSEarned), 4));
