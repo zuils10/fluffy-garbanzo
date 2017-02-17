@@ -666,6 +666,13 @@ function showBossRaidData() {
 
 //ELEMENTS' BEHAVIORS
 $(document).ready(function() {
+    $("#useDarkTheme").change(function() {
+        if ($(this).prop("checked"))
+            $("link[id=\"style\"]").attr("href","slate-bootstrap.css");
+        else
+            $("link[id=\"style\"]").attr("href","https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+    });
+
     $("#anctable").append("<tr><td></td><td class=\"text-right\"></td><td class=\"text-right\"></td><td class=\"text-right bold\"></td><td></td></tr>");
     var input = document.createElement("input");
     input.className = "form-control";
