@@ -322,8 +322,8 @@ function getSolomonMultiplier(solomonLevel, ponyboyMultiplier) {
 function showASGain(moreAS) {
     var as = Decimal(rawData.ancientSoulsTotal);
     var totalHSEarned = Decimal(rawData.heroSoulsSacrificed).plus(Decimal(rawData.heroSouls));
-/*    if ($("#useNextAscensionSouls").prop("checked"))
-        totalHSEarned = totalHSEarned.plus(Decimal(rawData.primalSouls));*/
+    if ($("#useNextAscensionSouls").prop("checked"))
+        totalHSEarned = totalHSEarned.plus(Decimal(rawData.primalSouls));
     for (var k in rawData.ancients.ancients)
         totalHSEarned = totalHSEarned.plus(Decimal(rawData.ancients.ancients[k].spentHeroSouls));
     var currentASGain = Decimal.log10(totalHSEarned).times(5).floor().minus(as);
