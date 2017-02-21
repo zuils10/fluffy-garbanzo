@@ -7,9 +7,10 @@ graceoflives
 This calculator is inspired by [Shruikan864](https://www.reddit.com/user/Shruikan864)'s [Rules of thumb 1.0 Spreadsheet](https://www.reddit.com/r/ClickerHeroes/comments/4nox6i/rules_of_thumb_10_spreadsheet/) and [sugima](https://www.reddit.com/user/sugima)'s [1.0 Rules of Thumb](https://www.reddit.com/r/ClickerHeroes/comments/4naohc/math_and_transcendance/).
 
 ## Last updated
-December 17, 2016.
+February 19, 2017.
 
 ## Changelogs
+* Switch to bootstrap-based themes.
 * Add new ancient: Nogardnit.
 * Decoded Data tab is removed from the calculator.
 * Atman, Bubos, Chronos, Dogcog, Dora, Fortuna and Kuma now have maximum levels, on which their effects equal their caps.
