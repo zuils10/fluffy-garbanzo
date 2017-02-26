@@ -38,41 +38,49 @@
     
 </head>
 <body>
-    <div class="col-lg-12">
-        <a class="btn btn-danger btn-block" href="#">INPUT</a></li>
+    <div class="row">
+        <div class="col-xs-12 col-lg-12">
+            <a class="btn btn-danger btn-block" href="#">INPUT</a></li>
+        </div>
     </div>
     <div class="clearfix"></div>
     <div class="col-lg-12">
         <div class="form-group">
-            <div class="col-lg-12">
+            <div class="col-xs-6 col-lg-6">
                 <input id="useDarkTheme" type="checkbox" name="theme">
                 <label for="useDarkTheme">Dark theme</label>
             </div>
             <div class="clearfix"></div>
-            <div class="col-lg-6">
+            <div class="col-xs-6 col-lg-6">
                 <input type="text" id="sg" placeholder="Paste save game here" class="form-control">
             </div>
             <div class="clearfix"></div>
-            <div class="col-lg-6">
+            <div class="col-xs-6 col-lg-6">
                 <input type="text" id="ascensionZone" placeholder="Paste ascension zone here" class="form-control">
             </div>
             <div class="clearfix"></div>
-            <div class="col-lg-6">
+            <div class="col-xs-6 col-lg-6">
                 <input type="checkbox" id="useNextAscensionSouls">
                 <label for="useNextAscensionSouls">Use souls gained after ascension</label>
             </div>
             <div class="clearfix"></div>
-            <div class="col-lg-6">
+            <div class="col-xs-6 col-lg-6">
                 <input type="checkbox" id="wep8k">
                 <label for="wep8k">I can afford current best hero level 8000+ but cannot afford next hero level 1</label>
             </div>
         </div>
     </div>
     <div class="clearfix"></div>
-    <div class="btn btn-group-justified">
-        <a class="btn btn-success btn-block" data-toggle="tab" href="#tab-ancient">ANCIENTS</a>
-        <a class="btn btn-success btn-block" data-toggle="tab" href="#tab-outsider">OUTSIDERS</a>
-        <a class="btn btn-success btn-block" data-toggle="tab" href="#tab-clans">CLANS</a>
+    <div class="row">
+        <div class="col-xs-4 col-lg-4">
+            <a class="btn btn-success btn-block" data-toggle="tab" href="#tab-ancient">ANCIENTS</a>
+        </div>
+        <div class="col-xs-4 col-lg-4">
+            <a class="btn btn-success btn-block" data-toggle="tab" href="#tab-outsider">OUTSIDERS</a>
+        </div>
+        <div class="col-xs-4 col-lg-4">
+            <a class="btn btn-success btn-block" data-toggle="tab" href="#tab-clans">CLANS</a>
+        </div>
     </div>
     <div class="clearfix"></div>
     <div class="col-lg-12">
@@ -96,7 +104,7 @@
                         </span>
                     </div>
                     <div class="form-inline">
-                        <input class="form-control" id="flagCalculateOtherAncients" type="checkbox" /> Vaagur, Revolc and skill ancients are
+                        <input id="flagCalculateOtherAncients" type="checkbox" /> Vaagur, Revolc and skill ancients are
                         <input class="form-control" type="number" id="otherAncientsLower" min="0" max="10" step="1" value="5" /> level lower than
                         <select class="form-control" id="otherAncientsLowerBase">
                             <option value="13">Atman</option>
