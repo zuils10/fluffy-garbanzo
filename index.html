@@ -8,7 +8,7 @@
     <link rel="icon" href="favicon.png" type="image/png">
 
     <!-- Latest compiled and minified CSS -->
-    <link id="style" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link id="style" rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -21,57 +21,64 @@
     <script type="text/javascript" src="functions.js"></script>
     <script type="text/javascript" src="functions2.js"></script>
     <style>
-        .table td {
+        table td {
             vertical-align: middle !important;
         }
+        .form-control {
+            height: 30px;
+            padding: 2px;
+        }
+        input {
+            padding: 2px 2px 2px 10px !important;
+        }
         a {
-            padding-left: 10px !important;
+            padding-left: 10px;
         }
     </style>
     
 </head>
 <body>
-    <div class="col-xs-2 col-md-2 col-lg-2">
-        <ul class="nav nav-pills flex-column" id="inputTab">
-            <li style="width: 100%;" class="text-center active"><a href="#">INPUT</a></li>
-            <li style="width: 100%;" class="text-center">
-                <div class="form-inline">
-                    <input id="useDarkTheme" type="checkbox" name="theme">Use dark theme
-                </div>
-            </li>
-        </ul>
+    <div class="col-lg-12">
+        <a class="btn btn-danger btn-block" href="#">INPUT</a></li>
     </div>
-
-    <div class="col-xs-10 col-md-10 col-lg-6">
-        <div class="form-inline col-xs-12 col-lg-12">
-            <input type="text" id="sg" placeholder="Paste save game here" class="form-control">
-        </div>
-        <div class="form-inline col-xs-12 col-lg-12">
-            <input type="text" id="ascensionZone" placeholder="Paste ascension zone here" class="form-control">
-        </div>
-        <div class="form-inline col-xs-12 col-lg-12">
-            <input type="checkbox" id="useNextAscensionSouls">
-            <label for="useNextAscensionSouls">Use souls gained after ascension</label>
-        </div>
-        <div class="form-inline col-xs-12 col-lg-12">
-            <input type="checkbox" id="wep8k">
-            <label for="wep8k">I can afford current best hero level 8000+ but cannot afford next hero level 1</label>
-        </div>
-    </div>
-
     <div class="clearfix"></div>
-
-    <div class="col-xs-2 col-md-2 col-lg-2">
-        <ul class="nav nav-pills flex-column" id="tabs">
-            <li style="width: 100%;" class="text-center active"><a data-toggle="tab" href="#tab-ancient">ANCIENTS</a></li>
-            <li style="width: 100%;" class="text-center"><a data-toggle="tab" href="#tab-outsider">OUTSIDERS</a></li>
-            <li style="width: 100%;" class="text-center"><a data-toggle="tab" href="#tab-clans">CLANS</a></li>
-        </ul>
+    <div class="col-lg-12">
+        <div class="form-group">
+            <div class="col-lg-12">
+                <input id="useDarkTheme" type="checkbox" name="theme">
+                <label for="useDarkTheme">Dark theme</label>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-6">
+                <input type="text" id="sg" placeholder="Paste save game here" class="form-control">
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-6">
+                <input type="text" id="ascensionZone" placeholder="Paste ascension zone here" class="form-control">
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-6">
+                <input type="checkbox" id="useNextAscensionSouls">
+                <label for="useNextAscensionSouls">Use souls gained after ascension</label>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-6">
+                <input type="checkbox" id="wep8k">
+                <label for="wep8k">I can afford current best hero level 8000+ but cannot afford next hero level 1</label>
+            </div>
+        </div>
     </div>
-    <div class="col-xs-10 col-md-10 col-lg-10">
+    <div class="clearfix"></div>
+    <div class="btn btn-group-justified">
+        <a class="btn btn-success btn-block" data-toggle="tab" href="#tab-ancient">ANCIENTS</a>
+        <a class="btn btn-success btn-block" data-toggle="tab" href="#tab-outsider">OUTSIDERS</a>
+        <a class="btn btn-success btn-block" data-toggle="tab" href="#tab-clans">CLANS</a>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12">
         <div class="tab-content">
             <div class="tab-pane fade in active" id="tab-ancient">
-                <div class="col-xs-7 col-lg-7">
+                <div class="col-xs-6 col-lg-6">
                     <p>Notes:</p>
                     <ul>
                         <li>Recommended only for <u>players who have transcended.</u></li>
@@ -101,7 +108,7 @@
                             <option value="21">Kumawakamaru</option>
                         </select>
                     </div>
-                    <table class="col-xs-6 col-lg-6 table table-condensed table-hover" id="anctable">
+                    <table class="col-xs-7 col-lg-7 table table-condensed table-hover" id="anctable">
                         <thead>
                             <tr class="bg-primary">
                                 <th class="text-center">Ancient</th>
@@ -119,7 +126,7 @@
             <div class="tab-pane fade" id="tab-outsider">
                 <div class="clearfix"></div>
                 <div class="col-xs-6 col-lg-6">
-                    <table class="table table-condensed table-bordered table-responsive" id="osdtable">
+                    <table class="table table-condensed table-bordered" id="osdtable">
                         <tr class="bg-primary">
                             <th>Outsider</th>
                             <th>Level</th>
@@ -162,8 +169,8 @@
                             <td colspan="3">
                                 <div style="float: left;">
                                     You gain:
-                                    <button class="btn btn-sm btn-primary" id="buttonLessAS">ʌ</button>
-                                    <button class="btn btn-sm btn-primary" id="buttonMoreAS">v</button>
+                                    <button class="btn btn-sm btn-primary" id="buttonLessAS"><i class="glyphicon glyphicon-menu-up"></i></button>
+                                    <button class="btn btn-sm btn-primary" id="buttonMoreAS"><i class="glyphicon glyphicon-menu-down"></i></button>
                                     <br>+<span id="asGain1">0</span> AS by earning <span id="hsToGain1">0</span> more HS
                                     <br>+<span id="asGain2">0</span> AS by earning <span id="hsToGain2">0</span> more HS
                                     <br>+<span id="asGain3">0</span> AS by earning <span id="hsToGain3">0</span> more HS

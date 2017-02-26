@@ -616,7 +616,7 @@ function optimizeAncient() {
     //show data
     var tb = document.getElementById("anctable");
     tb.rows[1].cells[0].innerHTML = "Hero Souls";
-    $("#manualHS").val(decFormatNoGrouping(hs));
+    $("#manualHS").val(sciFormat(hs, 4));
     tb.rows[1].cells[2].innerHTML = sciFormat(hs.minus(spentHS), 4);
     tb.rows[1].cells[3].innerHTML = "-" + sciFormat(spentHS, 4);
     if (ancientTableShow == 0) {
@@ -669,9 +669,9 @@ function showBossRaidData() {
 $(document).ready(function() {
     $("#useDarkTheme").change(function() {
         if ($(this).prop("checked"))
-            $("link[id=\"style\"]").attr("href","slate-bootstrap.css");
+            $("link[id=\"style\"]").attr("href","https://bootswatch.com/darkly/bootstrap.min.css");
         else
-            $("link[id=\"style\"]").attr("href","https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+            $("link[id=\"style\"]").attr("href","https://bootswatch.com/flatly/bootstrap.min.css");
     });
 
     $("#anctable").append("<tr><td></td><td class=\"text-right\"></td><td class=\"text-right\"></td><td class=\"text-right bold\"></td><td></td></tr>");
