@@ -31,8 +31,6 @@ var ancient = {
         "CostToOptimal": Decimal(0),
         "Visible": "true",
     },
-    //"6":{"Name" : "Khrysos, Ancient of Inheritance", "Level" : 0, "Hidden" : true},
-    //"7":{"Name" : "Thusia, Ancient of Vaults", "Level" : 0, "Hidden" : true},
     "8": {
         "Name": "Mammon",
         "Level": Decimal(0),
@@ -47,7 +45,6 @@ var ancient = {
         "CostToOptimal": Decimal(0),
         "Visible": "true",
     },
-    //"10":{"Name" : "Pluto, Ancient of Wealth", "Level" : 0, "Hidden" : true},
     "11": {
         "Name": "Dogcog",
         "Level": Decimal(0),
@@ -181,7 +178,6 @@ var ancient = {
         "CostToOptimal": Decimal(0),
         "Visible": "false",
     },
-    //"30":{"Name" : "Iris, Ancient of Vision", "Level" : 0, "Hidden" : true},
     "31": {
         "Name": "Revolc",
         "Level": Decimal(0),
