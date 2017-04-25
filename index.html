@@ -16,10 +16,20 @@
         table td {
             vertical-align: middle !important;
         }
-        .input-group, .input-group-addon, .form-control {
+        
+        .table {
+            margin-bottom: 0;
+        }
+        
+        input {
+            padding: 2px;
+        }
+        
+        .form-control {
             padding: 2px 2px 2px 10px;
             height: 30px;
         }
+        
         .nav-pills > li {
             margin-right: 10px;
         }
@@ -34,18 +44,15 @@
                 INPUT
             </div>
             <div class="panel-body">
-                <input id="useDarkTheme" type="checkbox" name="theme">
-                <label for="useDarkTheme">Dark theme</label>
+                <label><input id="useDarkTheme" type="checkbox" name="theme"> Dark theme</label>
                 <div class="clearfix"></div>
                 <input type="text" id="sg" placeholder="Paste save game here" class="form-control">
                 <div class="clearfix"></div>
                 <input type="text" id="ascensionZone" placeholder="Paste ascension zone here" class="form-control">
                 <div class="clearfix"></div>
-                <input type="checkbox" id="useNextAscensionSouls">
-                <label for="useNextAscensionSouls">Use souls gained after ascension</label>
+                <label><input type="checkbox" id="useNextAscensionSouls"> Use souls gained after ascension</label>
                 <div class="clearfix"></div>
-                <input type="checkbox" id="wep8k">
-                <label for="wep8k">Level 8000+ on best hero</label>
+                <label for="wep8k"><input type="checkbox" id="wep8k"> Level 8000+ on best hero</label>
             </div>
         </div>
         <div class="panel panel-default">
