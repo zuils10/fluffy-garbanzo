@@ -665,15 +665,14 @@ function showBossRaidData() {
 $(document).ready(function() {
     $("#useDarkTheme").change(function() {
         if ($(this).prop("checked"))
-            $("link[id=\"style\"]").attr("href","https://bootswatch.com/darkly/bootstrap.min.css");
+            $("#style").attr("href", "https://bootswatch.com/darkly/bootstrap.min.css");
         else
-            $("link[id=\"style\"]").attr("href","https://bootswatch.com/flatly/bootstrap.min.css");
+            $("#style").attr("href", "https://bootswatch.com/flatly/bootstrap.min.css");
     });
 
     $("#anctable").append("<tr><td></td><td class=\"text-right\"></td><td class=\"text-right\"></td><td class=\"text-right bold\"></td><td></td></tr>");
     var input = document.createElement("input");
-    input.className = "form-control";
-    input.style = "text-align: right";
+    input.className = "text-right form-control";
     input.type = "text";
     input.placeholder = "Your desire HS (current HS if ignored)";
     input.id = "manualHS";
