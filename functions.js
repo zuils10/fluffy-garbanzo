@@ -281,7 +281,11 @@ function getHeroSouls() {
 
 function getAscensionZone() {
     var a = Decimal(rawData.highestFinishedZonePersist);
-    $("#ascensionZone").val(a.toString());
+    var b = Decimal($("#ascensionZone").val());
+    if (b.gte(a))
+        $("#ascensionZone").val(b.toString());
+    else
+        $("#ascensionZone").val(a.toString());
     return a;
 }
 
