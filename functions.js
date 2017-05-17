@@ -280,9 +280,14 @@ function getHeroSouls() {
 }
 
 function getAscensionZone() {
-    var a = Decimal(rawData.highestFinishedZonePersist);
-    $("#ascensionZone").val(a.toString());
-    return a;
+    var _loc1 = Decimal(rawData.highestFinishedZonePersist);
+    if ($("#ascensionZone").val() != '')
+        var _loc2 = Decimal($("#ascensionZone").val());
+    else
+        var _loc2 = Decimal(0);
+    var _loc3 = (_loc1.gte(_loc2)) ? _loc1 : _loc2;
+    $("#ascensionZone").val(_loc3.toString());
+    return _loc3;
 }
 
 function getCurrentRatio() {
