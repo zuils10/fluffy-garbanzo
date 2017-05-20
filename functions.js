@@ -8,6 +8,7 @@ var ascZone = new Decimal(0);
 var ancientTableShow = 0;
 var summonedAncients = 0;
 var ratio = Decimal(1);
+var isSaveLoaded = false;
 var additionalASShow = new Decimal(0);
 var ancient = {
     "3": {
@@ -374,6 +375,7 @@ function loadGame() {
         } else
             ancient[k].Level = Decimal(0);
     }
+    isSaveLoaded = true;
 }
 
 function showOutsider() {
@@ -698,19 +700,23 @@ $(document).ready(function() {
         else {
             ascZone = getAscensionZone();
         }
-        optimizeAncient();
+        if (isSaveLoaded)
+            optimizeAncient();
     });
     $("#manualHS").change(function() {
         if (Decimal($(this).val()).gt(0))
             hs = Decimal($(this).val());
         else
             hs = getHeroSouls();
-        optimizeAncient();
+        if (isSaveLoaded)
+            optimizeAncient();
     });
     $("#useNextAscensionSouls").change(function() {
-        hs = getHeroSouls();
-        optimizeAncient();
-        showASGain(additionalASShow);
+        if (isSaveLoaded) {
+            hs = getHeroSouls();
+            optimizeAncient();
+            showASGain(additionalASShow);
+        }
     });
     $(document).on("click", "input", function() {
         $(this).select();
@@ -742,11 +748,13 @@ $(document).ready(function() {
             ancient["19"].Visible = "true";
             ancient["29"].Visible = "true";
         }
-        optimizeAncient();
+        if (isSaveLoaded)
+            optimizeAncient();
     });
     $("#hybridRatio, #wep8k").on("change", function() {
         ratio = Decimal($("#hybridRatio").val());
-        optimizeAncient();
+        if (isSaveLoaded)
+            optimizeAncient();
     });
     $("#flagCalculateOtherAncients").on("change", function() {
         if ($(this).prop("checked")) {
@@ -768,17 +776,23 @@ $(document).ready(function() {
             ancient["27"].Visible = "false";
             ancient["31"].Visible = "false";
         }
-        optimizeAncient();
+        if (isSaveLoaded)
+            optimizeAncient();
     });
     $("#otherAncientsLower, #otherAncientsLowerBase").on("change", function() {
-        optimizeAncient();
+        if (isSaveLoaded)
+            optimizeAncient();
     });
     $("#buttonLessAS").on("click", function() {
-        additionalASShow = Decimal.max(additionalASShow.minus(1), 0);
-        showASGain(additionalASShow);
+        if (isSaveLoaded) {
+            additionalASShow = Decimal.max(additionalASShow.minus(1), 0);
+            showASGain(additionalASShow);
+        }
     });
     $("#buttonMoreAS").on("click", function() {
-        additionalASShow = Decimal.min(additionalASShow.plus(1), 27);
-        showASGain(additionalASShow);
+        if (isSaveLoaded) {
+            additionalASShow = Decimal.min(additionalASShow.plus(1), 27);
+            showASGain(additionalASShow);
+        }
     });
 });
