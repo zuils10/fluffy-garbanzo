@@ -721,7 +721,7 @@ $(document).ready(function() {
     $(document).on("click", "input", function() {
         $(this).select();
     });
-    
+
     $("#playstyleSelect").change(function() {
         if ($(this).val() == "idle") {
             $("#hybridRatioContainer").hide();
