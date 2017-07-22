@@ -12,9 +12,10 @@
     <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script defer type="text/javascript" src="https://cdn.rawgit.com/MikeMcl/decimal.js/master/decimal.min.js"></script>
     <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
-    <script defer type="text/javascript" src="js/functions.min.js"></script>
-    <script defer type="text/javascript" src="js/functions2.js"></script>
-    <script async="" src="//www.google-analytics.com/analytics.js"></script>
+    <script async type="text/javascript" src="js/pako-master/dist/pako.min.js"></script>
+    <script defer type="text/javascript" src="js/functions.js"></script>
+    <script defer type="text/javascript" src="js/decoder.js"></script>
+    <script defer type="text/javascript" src="js/encoder.js"></script>
     <style>
     table td {
         vertical-align: middle !important;
@@ -48,23 +49,27 @@
             </div>
             <div class="panel-body">
                 <label>
-                    <input id="useDarkTheme" type="checkbox" name="theme"> Dark theme</label>
+                    <input id="useDarkTheme" type="checkbox" name="theme"> Dark theme
+                </label>
                 <div class="clearfix"></div>
                 <input type="text" id="sg" placeholder="Paste save game here" class="form-control">
+                <input type="hidden" id="saveGameType">
                 <div class="clearfix"></div>
                 <input type="text" id="ascensionZone" placeholder="Paste ascension zone here" class="form-control">
                 <div class="clearfix"></div>
                 <label>
-                    <input type="checkbox" id="useNextAscensionSouls"> Use souls gained after ascension</label>
+                    <input type="checkbox" id="useNextAscensionSouls"> Use souls gained after ascension
+                </label>
                 <div class="clearfix"></div>
                 <label for="wep8k">
-                    <input type="checkbox" id="wep8k"> Level 8000+ on best hero</label>
+                    <input type="checkbox" id="wep8k"> Level 8000+ on best hero
+                </label>
             </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading" style="padding: 0;">
                 <ul class="nav nav-pills">
-                    <li class="active"><a class="btn btn-sm btn-success" data-toggle="tab" href="#tab-ancient">ANCIENTS</a></li>
+                    <li><a class="btn btn-sm btn-success" data-toggle="tab" href="#tab-ancient">ANCIENTS</a></li>
                     <li><a class="btn btn-sm btn-success" data-toggle="tab" href="#tab-outsider">OUTSIDERS</a></li>
                     <li><a class="btn btn-sm btn-success" data-toggle="tab" href="#tab-clans">CLANS</a></li>
                 </ul>

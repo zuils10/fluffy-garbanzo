@@ -354,13 +354,7 @@ function getNUALevel(a, b, c, d, s) {
 function loadGame() {
     var SPLITTER = "Fe12NAfA3R6z4k0z";
     var ipData = $("#sg").val();
-    if (ipData.indexOf(SPLITTER) > 0) {
-        ipData = ipData.split(SPLITTER)[0];
-        var temp = "";
-        for (var i = 0; i < ipData.length; i += 2)
-            temp += ipData[i];
-        rawData = JSON.parse(atob(temp));
-    }
+    rawData = decoder.decode_main(ipData);
     //load Outsiders
     for (var k in outsider) {
         outsider[k].Level = Decimal(rawData.outsiders.outsiders[k].level);
