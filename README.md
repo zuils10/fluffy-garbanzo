@@ -7,9 +7,10 @@ graceoflives
 This calculator is inspired by [Shruikan864](https://www.reddit.com/user/Shruikan864)'s [Rules of thumb 1.0 Spreadsheet](https://www.reddit.com/r/ClickerHeroes/comments/4nox6i/rules_of_thumb_10_spreadsheet/) and [sugima](https://www.reddit.com/user/sugima)'s [1.0 Rules of Thumb](https://www.reddit.com/r/ClickerHeroes/comments/4naohc/math_and_transcendance/).
 
 ## Last updated
-February 19, 2017.
+July 22, 2017.
 
 ## Changelogs
+* Fix the bug with auto leveler; apply new encoding algorithm for the coming patch.
 * Switch to bootstrap-based themes.
 * Add new ancient: Nogardnit.
 * Decoded Data tab is removed from the calculator.
