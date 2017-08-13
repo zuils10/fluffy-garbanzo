@@ -31,17 +31,18 @@ var decoder = {
 	},
 
 	decode_zlib: function(inputString) {
-		var pako = window.pako;
-		var binArray = new Uint8Array(decoder.stringToBinaryArray(atob(inputString.substring(32))));
-		var output = JSON.parse(pako.inflate(binArray, {to: 'string'}));
+		pako = window.pako;
+		_loc1 = inputString.substring(32);
+		_loc2 = atob(_loc1);
+		binArray = new Uint8Array(decoder.stringToBinaryArray(_loc2));
+		output = JSON.parse(pako.inflate(binArray, {to: 'string'}));
 		return output;
 	},
 
 	stringToBinaryArray: function(str) {
 		var binary = [];
 		for (var i = 0; i < str.length; ++i) {
-			var code = str.charCodeAt(i);
-			binary = binary.concat([code]);
+			binary.push(str.charCodeAt(i));
 		}
 		return binary;
 	},

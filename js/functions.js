@@ -643,6 +643,10 @@ function optimizeAncient() {
             tb.rows[i].style.display = "table-row";
         i++;
     }
+    //show the autolevel button
+    $('#tab-ancient-note').slideUp(400, function() {
+        $('#tab-ancient-autolevel').slideDown();
+    });
 }
 
 function showBossRaidData() {
@@ -789,4 +793,17 @@ $(document).ready(function() {
             showASGain(additionalASShow);
         }
     });
+
+    //autolevel modal
+    $('#btnAutoLevel').on('click', function() {
+        autoLevelAncient();
+    });
+
+    $('#btnAutoShow').on('click', function() {
+        $('#modalAsk').slideUp();
+        $('#modalShow').delay(400).slideDown();
+    });
+    $('#modalShow textarea').on('click', function() {
+        $(this).select();
+    })
 });

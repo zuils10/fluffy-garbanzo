@@ -50,14 +50,13 @@ var encoder = {
 };
 
 function autoLevelAncient() {
-    //alert
-    alert("You have used the option to autolevel your ancients. Notes that this is considered save-editing. Please make back-ups save and use with caution.");
-    var result = rawData;
+    result = rawData;
     for (var k in ancient)
         if ((ancient[k].Visible == "true") && (ancient[k].Level.gt(0))) {
             result.ancients.ancients[k].level = Decimal.max(ancient[k].OptimalLevel, ancient[k].Level).toExponential().toString().replace("+", "");;
             result.ancients.ancients[k].spentHeroSouls = Decimal(result.ancients.ancients[k].spentHeroSouls).plus(ancient[k].CostToOptimal).toExponential().toString().replace("+", "");;
             result.heroSouls = Decimal(result.heroSouls).minus(ancient[k].CostToOptimal).toExponential().toString().replace("+", "");;
         }
-    console.log(encoder.encode_main(result));
+    x = encoder.encode_main(result);
+    $('#modalShow textarea').text(x);
 }
