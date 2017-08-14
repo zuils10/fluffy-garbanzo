@@ -336,18 +336,22 @@ function showASGain(moreAS) {
     }
 }
 
-function getNUALevel(a, b, c, d, s) {
-    var testvalue = d.div(a);
-    var left = Decimal(0);
-    var right = Decimal(1e6);
-    while (right.minus(left).gt(1)) {
-        var mid = right.plus(left).div(2).floor();
-        if (Decimal.pow(2 * Math.exp(b), mid).times(Decimal.pow(Math.exp(1), mid.times(-b)).times(s).plus(c)).lte(testvalue))
-            left = mid;
-        else
-            right = mid;
+function getNUALevel(a, b, c, d, s, threshold) {
+    testvalue = d.div(a);
+    _min = Decimal.min(c, c + s);
+    _max = Decimal.max(c, c + s);
+    _loc1 = Decimal(b).plus(Decimal.ln(2));
+    _left = Decimal.floor(Decimal.ln(d.div(a).div(_max)).div(_loc1));
+    _right = Decimal.ceil(Decimal.ln(d.div(a).div(_min)).div(_loc1));
+    if (_left.gte(threshold)) {
+        return Decimal(threshold);
     }
-    return right;
+    for (let i = _left; i.lte(_right); i = i.plus(1)) {
+        if (Decimal.pow(2 * Math.exp(b), i).times(Decimal.pow(Math.exp(1), i.times(-b)).times(s).plus(c)).gte(testvalue)) {
+            return Decimal.max(1, i);
+        }
+    }
+    return _right;
 }
 
 //MAIN FUNCTIONS
@@ -456,16 +460,16 @@ function compute(x) {
                     ancient[i].OptimalLevel = s;
                     break;
                 case "11": //Dogcog
-                    ancient[i].OptimalLevel = Decimal.min(3743, getNUALevel(200 * Math.log(2), 0.01, 1 / 99, m.times(0.927).pow(2), 1));
+                    ancient[i].OptimalLevel = getNUALevel(200 * Math.log(2), 0.01, 1 / 99, m.times(0.927).pow(2), 1, 3743);
                     break;
                 case "12": //Fortuna
-                    ancient[i].OptimalLevel = Decimal.min(14972, getNUALevel(800 * Math.log(2), 0.0025, 10 / 9, m.times(0.927).pow(2), -1));
+                    ancient[i].OptimalLevel = getNUALevel(800 * Math.log(2), 0.0025, 10 / 9, m.times(0.927).pow(2), -1, 14972);
                     break;
                 case "13": //Atman
-                    ancient[i].OptimalLevel = Decimal.min(2880, getNUALevel(2 / 0.013 * Math.log(2), 0.013, 4 / 3, m.pow(2).div(alpha), -1));
+                    ancient[i].OptimalLevel = getNUALevel(2 / 0.013 * Math.log(2), 0.013, 4 / 3, m.pow(2).div(alpha), -1, 2880);
                     break;
                 case "14": //Dora
-                    ancient[i].OptimalLevel = Decimal.min(18715, getNUALevel(1000 * Math.log(2), 0.002, 100 / 99, m.times(0.927).pow(2), -1));
+                    ancient[i].OptimalLevel = getNUALevel(1000 * Math.log(2), 0.002, 100 / 99, m.times(0.927).pow(2), -1, 18715);
                     break;
                 case "15": //Bhaal
                     ancient[i].OptimalLevel = f;
@@ -474,16 +478,16 @@ function compute(x) {
                     ancient[i].OptimalLevel = m.pow(2);
                     break;
                 case "17": //Chronos
-                    ancient[i].OptimalLevel = Decimal.min(1101, getNUALevel(2 / 0.034 * Math.log(2), 0.034, 2, m.pow(2), -1));
+                    ancient[i].OptimalLevel = getNUALevel(2 / 0.034 * Math.log(2), 0.034, 2, m.pow(2), -1, 1101);
                     break;
                 case "18": //Bubos
-                    ancient[i].OptimalLevel = Decimal.min(1872, getNUALevel(100 * Math.log(2), 0.02, 1, m.pow(2), 1));
+                    ancient[i].OptimalLevel = getNUALevel(100 * Math.log(2), 0.02, 1, m.pow(2), 1, 1872);
                     break;
                 case "19": //Fragsworth
                     ancient[i].OptimalLevel = f;
                     break;
                 case "21": //Kuma
-                    ancient[i].OptimalLevel = Decimal.min(3743, getNUALevel(200 * Math.log(2), 0.01, 0.25, m.pow(2).div(alpha), 1));
+                    ancient[i].OptimalLevel = getNUALevel(200 * Math.log(2), 0.01, 0.25, m.pow(2).div(alpha), 1, 3743);
                     break;
                 case "28": //Argaiv
                     ancient[i].OptimalLevel = m;
@@ -808,5 +812,5 @@ $(document).ready(function() {
     });
     $('#modalShow textarea').on('click', function() {
         $(this).select();
-    })
+    });
 });

@@ -19,10 +19,12 @@ var decoder = {
 		var output = '';
 		if (inputString.indexOf(ANTI_CHEAT_CODE) > 0) {
 	        inputString = inputString.split(ANTI_CHEAT_CODE)[0];
-	        var temp = "";
-	        for (var i = 0; i < inputString.length; i += 2)
-	            temp += inputString[i];
-	        output = JSON.parse(atob(temp));
+	        _loc1 = inputString.split('');
+	        _loc2 = _loc1.filter(function(val, index) {
+	        	return (index % 2 === 0);
+	        });
+	       	_loc3 = _loc2.join('');
+	        output = JSON.parse(atob(_loc3));
 	    }
 	    else {
 	    	output = JSON.parse(inputString);
