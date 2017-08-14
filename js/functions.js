@@ -685,12 +685,15 @@ $(document).ready(function() {
     tb.rows[1].cells[0].innerHTML = "Hero Souls";
     tb.rows[1].cells[1].appendChild(input);
     $("#sg").change(function() {
+        t0 = performance.now();
         loadGame();
         ascZone = getAscensionZone();
         hs = getHeroSouls();
         showOutsider();
         showBossRaidData();
         getCurrentRatio();
+        t1 = performance.now();
+        console.log('Total time: ' + (t1 - t0) + ' ms.');
     });
     $("#ascensionZone").change(function() {
         if (Decimal($(this).val()).gt(0))
