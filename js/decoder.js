@@ -36,16 +36,7 @@ var decoder = {
 		pako = window.pako;
 		_loc1 = inputString.substring(32);
 		_loc2 = atob(_loc1);
-		binArray = new Uint8Array(decoder.stringToBinaryArray(_loc2));
-		output = JSON.parse(pako.inflate(binArray, {to: 'string'}));
+		output = JSON.parse(pako.inflate(_loc2, {to: 'string'}));
 		return output;
-	},
-
-	stringToBinaryArray: function(str) {
-		var binary = [];
-		for (var i = 0; i < str.length; ++i) {
-			binary.push(str.charCodeAt(i));
-		}
-		return binary;
 	},
 };
