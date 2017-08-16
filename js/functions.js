@@ -337,12 +337,12 @@ function showASGain(moreAS) {
 }
 
 function getNUALevel(a, b, c, d, s, threshold) {
-    testvalue = d.div(a);
-    _min = Decimal.min(c, c + s);
-    _max = Decimal.max(c, c + s);
-    _loc1 = Decimal(b).plus(Decimal.ln(2));
-    _left = Decimal.floor(Decimal.ln(d.div(a).div(_max)).div(_loc1));
-    _right = Decimal.ceil(Decimal.ln(d.div(a).div(_min)).div(_loc1));
+    var testvalue = d.div(a);
+    var _min = Decimal.min(c, c + s);
+    var _max = Decimal.max(c, c + s);
+    var _loc1 = Decimal(b).plus(Decimal.ln(2));
+    var _left = Decimal.floor(Decimal.ln(d.div(a).div(_max)).div(_loc1));
+    var _right = Decimal.ceil(Decimal.ln(d.div(a).div(_min)).div(_loc1));
     if (_left.gte(threshold)) {
         return Decimal(threshold);
     }
@@ -689,14 +689,14 @@ $(document).ready(function() {
     tb.rows[1].cells[0].innerHTML = "Hero Souls";
     tb.rows[1].cells[1].appendChild(input);
     $("#sg").change(function() {
-        t0 = performance.now();
+        var t0 = performance.now();
         loadGame();
         ascZone = getAscensionZone();
         hs = getHeroSouls();
         showOutsider();
         showBossRaidData();
         getCurrentRatio();
-        t1 = performance.now();
+        var t1 = performance.now();
         console.log('Total time: ' + (t1 - t0) + ' ms.');
     });
     $("#ascensionZone").change(function() {

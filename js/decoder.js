@@ -19,24 +19,24 @@ var decoder = {
 		var output = '';
 		if (inputString.indexOf(ANTI_CHEAT_CODE) > 0) {
 	        inputString = inputString.split(ANTI_CHEAT_CODE)[0];
-	        _loc1 = inputString.split('');
-	        _loc2 = _loc1.filter(function(val, index) {
+	        var _loc1 = inputString.split('');
+	        var _loc2 = _loc1.filter(function(val, index) {
 	        	return (index % 2 === 0);
 	        });
-	       	_loc3 = _loc2.join('');
-	        output = JSON.parse(atob(_loc3));
+	       	var _loc3 = _loc2.join('');
+	        var output = JSON.parse(atob(_loc3));
 	    }
 	    else {
-	    	output = JSON.parse(inputString);
+	    	var output = JSON.parse(inputString);
 	    }
 	    return output;
 	},
 
 	decode_zlib: function(inputString) {
-		pako = window.pako;
-		_loc1 = inputString.substring(32);
-		_loc2 = atob(_loc1);
-		output = JSON.parse(pako.inflate(_loc2, {to: 'string'}));
+		var pako = window.pako;
+		var _loc1 = inputString.substring(32);
+		var _loc2 = atob(_loc1);
+		var output = JSON.parse(pako.inflate(_loc2, {to: 'string'}));
 		return output;
 	},
 };
