@@ -625,10 +625,12 @@ function optimizeAncient() {
         }
         $(".rs").map(function() {
             $(this).focus(function() {
-                $(this).val(decFormatEasyCopy(Decimal.max(0, ancientArr[this.id].OptimalLevel.minus(ancientArr[this.id].Level))))
+                $(this).val(decFormatEasyCopy(Decimal.max(0, ancientArr[this.id].OptimalLevel.minus(ancientArr[this.id].Level))));
+                $(this).select();
+                document.execCommand('copy');
             });
             $(this).focusout(function() {
-                $(this).val(sciFormat(Decimal.max(0, ancientArr[this.id].OptimalLevel.minus(ancientArr[this.id].Level)), 4))
+                $(this).val(sciFormat(Decimal.max(0, ancientArr[this.id].OptimalLevel.minus(ancientArr[this.id].Level)), 4));
             });
         });
         ancientTableShow = 1;
@@ -692,6 +694,16 @@ $(document).ready(function() {
 
     $("#anctable").append("<tr><td></td><td class=\"text-right\"></td><td class=\"text-right\"></td><td class=\"text-right bold\"></td><td></td></tr>");
 
+    var input = document.createElement("input");
+    input.className = "text-right form-control";
+    input.type = "text";
+    input.placeholder = "Your desire HS (current HS if ignored)";
+    input.id = "manualHS";
+    var tb = document.getElementById("anctable")
+    tb.rows[1].cells[0].innerHTML = "Hero Souls";
+    tb.rows[1].cells[1].appendChild(input);
+    
+    //load save game from files
     $("#btn_file_sg").on('click', function() {
         $("#file_sg").click();
     });
@@ -704,15 +716,7 @@ $(document).ready(function() {
         };
     });
 
-    var input = document.createElement("input");
-    input.className = "text-right form-control";
-    input.type = "text";
-    input.placeholder = "Your desire HS (current HS if ignored)";
-    input.id = "manualHS";
-    var tb = document.getElementById("anctable")
-    tb.rows[1].cells[0].innerHTML = "Hero Souls";
-    tb.rows[1].cells[1].appendChild(input);
-    
+    //load game by pasting
     $("#sg").change(function() {
         loadAndDoStuff($(this).val());
     });
