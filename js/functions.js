@@ -355,10 +355,9 @@ function getNUALevel(a, b, c, d, s, threshold) {
 }
 
 //MAIN FUNCTIONS
-function loadGame() {
+function loadGame(dataInput) {
     var SPLITTER = "Fe12NAfA3R6z4k0z";
-    var ipData = $("#sg").val();
-    rawData = decoder.decode_main(ipData);
+    rawData = decoder.decode_main(dataInput);
     //load Outsiders
     for (var k in outsider) {
         outsider[k].Level = Decimal(rawData.outsiders.outsiders[k].level);
@@ -670,6 +669,18 @@ function showBossRaidData() {
     $("#highestBossLevel").text(highestBossLvl.toString());
 }
 
+function loadAndDoStuff(inputData) {
+    var t0 = performance.now();
+    loadGame(inputData);
+    ascZone = getAscensionZone();
+    hs = getHeroSouls();
+    showOutsider();
+    showBossRaidData();
+    getCurrentRatio();
+    var t1 = performance.now();
+    console.log('Total time: ' + (t1 - t0) + ' ms.');
+}
+
 //ELEMENTS' BEHAVIORS
 $(document).ready(function() {
     $("#useDarkTheme").change(function() {
@@ -680,6 +691,19 @@ $(document).ready(function() {
     });
 
     $("#anctable").append("<tr><td></td><td class=\"text-right\"></td><td class=\"text-right\"></td><td class=\"text-right bold\"></td><td></td></tr>");
+
+    $("#btn_file_sg").on('click', function() {
+        $("#file_sg").click();
+    });
+
+    $("#file_sg").on("change", function() {
+        var fr = new FileReader();
+        fr.readAsText($(this).prop("files")[0]);
+        fr.onload = function() {
+            loadAndDoStuff(fr.result);
+        };
+    });
+
     var input = document.createElement("input");
     input.className = "text-right form-control";
     input.type = "text";
@@ -688,17 +712,11 @@ $(document).ready(function() {
     var tb = document.getElementById("anctable")
     tb.rows[1].cells[0].innerHTML = "Hero Souls";
     tb.rows[1].cells[1].appendChild(input);
+    
     $("#sg").change(function() {
-        var t0 = performance.now();
-        loadGame();
-        ascZone = getAscensionZone();
-        hs = getHeroSouls();
-        showOutsider();
-        showBossRaidData();
-        getCurrentRatio();
-        var t1 = performance.now();
-        console.log('Total time: ' + (t1 - t0) + ' ms.');
+        loadAndDoStuff($(this).val());
     });
+
     $("#ascensionZone").change(function() {
         if (Decimal($(this).val()).gt(0))
             ascZone = Decimal($(this).val());
