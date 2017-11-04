@@ -687,9 +687,9 @@ function loadAndDoStuff(inputData) {
 $(document).ready(function() {
     $("#useDarkTheme").change(function() {
         if ($(this).prop("checked"))
-            $("#style").attr("href", "https://bootswatch.com/darkly/bootstrap.min.css");
+            $("#style").attr("href", "https://bootswatch.com/3/darkly/bootstrap.min.css");
         else
-            $("#style").attr("href", "https://bootswatch.com/flatly/bootstrap.min.css");
+            $("#style").attr("href", "https://bootswatch.com/3/flatly/bootstrap.min.css");
     });
 
     $("#anctable").append("<tr><td></td><td class=\"text-right\"></td><td class=\"text-right\"></td><td class=\"text-right bold\"></td><td></td></tr>");
