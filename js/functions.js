@@ -46,6 +46,13 @@ var ancient = {
         "CostToOptimal": Decimal(0),
         "Visible": "true",
     },
+    "10": {
+        "Name": "Pluto",
+        "Level": Decimal(0),
+        "OptimalLevel": Decimal(0),
+        "CostToOptimal": Decimal(0),
+        "Visible": "false",
+    },
     "11": {
         "Name": "Dogcog",
         "Level": Decimal(0),
@@ -458,6 +465,12 @@ function compute(x) {
                 case "5": //Siyalatas
                     ancient[i].OptimalLevel = s;
                     break;
+                case "10": //Pluto
+                    if ($("#wep8k").prop("checked"))
+                        ancient[i].OptimalLevel = f.times(0.905).ceil();
+                    else
+                        ancient[i].OptimalLevel = f.times(0.926).ceil();
+                    break;
                 case "11": //Dogcog
                     ancient[i].OptimalLevel = getNUALevel(200 * Math.log(2), 0.01, 1 / 99, m.times(0.927).pow(2), 1, 3743);
                     break;
@@ -540,6 +553,7 @@ function compute(x) {
                 case "5":
                 case "8":
                 case "9":
+                case "10":
                 case "15":
                 case "19":
                 case "28": //n
@@ -620,7 +634,7 @@ function optimizeAncient() {
     tb.rows[1].cells[2].innerHTML = sciFormat(hs.minus(spentHS), 4);
     tb.rows[1].cells[3].innerHTML = "-" + sciFormat(spentHS, 4);
     if (ancientTableShow == 0) {
-        for (var j = 0; j < 26; j++) {
+        for (var j = 0; j < 27; j++) {
             $("#anctable").append("<tr style=\"display: table-row;\"><td></td><td class=\"text-right\"></td><td class=\"text-right\"></td><td><input id=\"" + j + "\" class=\"form-control rs text-right bold \" type=\"text\"></input></td><td class=\"text-right\"></td></tr>");
         }
         $(".rs").map(function() {
@@ -755,6 +769,7 @@ $(document).ready(function() {
             ancient["4"].Visible = "true";
             ancient["5"].Visible = "true";
             ancient["32"].Visible = "true";
+            ancient["10"].Visible = "false";
             ancient["15"].Visible = "false";
             ancient["19"].Visible = "false";
             ancient["29"].Visible = "false";
@@ -763,6 +778,7 @@ $(document).ready(function() {
             ancient["4"].Visible = "true";
             ancient["5"].Visible = "true";
             ancient["32"].Visible = "true";
+            ancient["10"].Visible = "true";
             ancient["15"].Visible = "true";
             ancient["19"].Visible = "true";
             ancient["29"].Visible = "true";
@@ -771,6 +787,7 @@ $(document).ready(function() {
             ancient["4"].Visible = "false";
             ancient["5"].Visible = "false";
             ancient["32"].Visible = "false";
+            ancient["10"].Visible = "true";
             ancient["15"].Visible = "true";
             ancient["19"].Visible = "true";
             ancient["29"].Visible = "true";
