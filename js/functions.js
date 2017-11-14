@@ -11,13 +11,6 @@ var ratio = Decimal(1);
 var isSaveLoaded = false;
 var additionalASShow = new Decimal(0);
 var ancient = {
-    "3": {
-        "Name": "Solomon",
-        "Level": Decimal(0),
-        "OptimalLevel": Decimal(0),
-        "CostToOptimal": Decimal(0),
-        "Visible": "true",
-    },
     "4": {
         "Name": "Libertas",
         "Level": Decimal(0),
@@ -227,6 +220,31 @@ var outsider = {
         "Level": Decimal(0),
         "Multiplier": Decimal(0)
     },
+    "6": {
+        "Name": "Borb",
+        "Level": Decimal(0),
+        "Multiplier": Decimal(0)
+    },
+    "7": {
+        "Name": "Rhageist",
+        "Level": Decimal(0),
+        "Multiplier": Decimal(0)
+    },
+    "8": {
+        "Name": "K'Ariqua",
+        "Level": Decimal(0),
+        "Multiplier": Decimal(0)
+    },
+    "9": {
+        "Name": "Orphalas",
+        "Level": Decimal(0),
+        "Multiplier": Decimal(0)
+    },
+    "10": {
+        "Name": "Sen-Akhan",
+        "Level": Decimal(0),
+        "Multiplier": Decimal(0)
+    },
 }
 
 //SUMMATIONS
@@ -276,7 +294,7 @@ function sciFormat(num, decimalPoint) {
 //SUPPORT FUNCTIONS
 function calcTranscendentPower() {
     var totalAS = Decimal(rawData.ancientSoulsTotal);
-    return Decimal(50).minus(Decimal(49).times(totalAS.neg().div(10000).exp())).plus(outsider[3].Multiplier).div(100);
+    return Decimal(25).minus(Decimal(23).times(totalAS.times(-0.0003).exp())).div(100);
 }
 
 function getHeroSouls() {
@@ -317,6 +335,11 @@ function getCurrentRatio() {
         $("#hybridRatio").val(ratio.toString());
         $("#playstyleSelect").prop('selectedIndex', 1).change();
     }
+}
+
+function linearX(a, x)
+{
+    return a.times(x/100);
 }
 
 function getSolomonMultiplier(solomonLevel, ponyboyMultiplier) {
@@ -367,7 +390,9 @@ function loadGame(dataInput) {
     rawData = decoder.decode_main(dataInput);
     //load Outsiders
     for (var k in outsider) {
-        outsider[k].Level = Decimal(rawData.outsiders.outsiders[k].level);
+        if (!!rawData.outsiders.outsiders[k]) {
+            outsider[k].Level = Decimal(rawData.outsiders.outsiders[k].level);
+        }
     }
     //load Ancients
     for (var k in ancient) {
@@ -388,30 +413,36 @@ function showOutsider() {
         tb.rows[k].cells[1].innerHTML = outsider[k].Level.toString();
     }
     //calculate the multipliers
-    outsider[1].Multiplier = outsider[1].Level;
+    outsider[1].Multiplier = Decimal(1.5).pow(outsider[1].Level);
     outsider[2].Multiplier = Decimal(1).minus(Decimal(0.95).pow(outsider[2].Level));
-    outsider[3].Multiplier = Decimal(50).minus(outsider[3].Level.neg().div(1000).exp().times(50));
-    outsider[4].Multiplier = outsider[4].Level.div(10);
-    outsider[5].Multiplier = outsider[5].Level;
+    outsider[3].Multiplier = outsider[3].Level;
+    /*outsider[4].Multiplier = outsider[4].Level.div(10);*/
+    outsider[5].Multiplier = outsider[5].Level.pow(2).times(10);
+    outsider[6].Multiplier = linearX(outsider[6].Level, 10);
+    outsider[7].Multiplier = linearX(outsider[7].Level, 25);
+    outsider[8].Multiplier = linearX(outsider[8].Level, 50);
+    outsider[9].Multiplier = linearX(outsider[9].Level, 75);
+    outsider[10].Multiplier = linearX(outsider[10].Level, 100);
+
     //show data
     tb.rows[1].cells[2].innerHTML = "+" + outsider[1].Multiplier.times(100).toString() + "% effective of all Idle bonuses";
     tb.rows[2].cells[2].innerHTML = "-" + fracFormat(outsider[2].Multiplier.times(100)) + "% Ancient cost";
-    tb.rows[3].cells[2].innerHTML = "+" + fracFormat(outsider[3].Multiplier) + "% Transcendent Power (additive)";
-    tb.rows[4].cells[2].innerHTML = "+" + outsider[4].Multiplier.times(100).toString() + "% maximum transcendent primal soul reward";
+    tb.rows[3].cells[2].innerHTML = "+" + outsider[3].Multiplier.times(100).toString() + "% DPS";
+    /*tb.rows[4].cells[2].innerHTML = "+" + outsider[4].Multiplier.times(100).toString() + "% maximum transcendent primal soul reward";*/
     tb.rows[5].cells[2].innerHTML = "+" + outsider[5].Multiplier.times(100).toString() + "% effective of Solomon";
+    tb.rows[6].cells[2].innerHTML = "+" + outsider[6].Multiplier.times(100).toString() + "% effective of Kumawakamaru";
+    tb.rows[7].cells[2].innerHTML = "+" + outsider[7].Multiplier.times(100).toString() + "% effective of Atman";
+    tb.rows[8].cells[2].innerHTML = "+" + outsider[8].Multiplier.times(100).toString() + "% effective of Bubos";
+    tb.rows[9].cells[2].innerHTML = "+" + outsider[9].Multiplier.times(100).toString() + "% effective of Chronos";
+    tb.rows[10].cells[2].innerHTML = "+" + outsider[10].Multiplier.times(100).toString() + "% effective of Dora";
+
     var tp = calcTranscendentPower();
-    var maxTPReward = outsider[4].Multiplier.plus(1).times(0.05).times(Decimal(rawData.heroSoulsSacrificed));
-    var x = ancient["3"].Level; //Solomon level
-    var solomonMultiplier = getSolomonMultiplier(ancient["3"].Level, outsider[5].Multiplier);
-    var zoneCap = maxTPReward.div(solomonMultiplier.times(20)).ln().div(tp.plus(1).ln()).ceil().times(5).plus(100);
     var as = Decimal(rawData.ancientSoulsTotal);
     var totalHSEarned = Decimal(rawData.heroSoulsSacrificed).plus(Decimal(rawData.heroSouls));
     for (var k in rawData.ancients.ancients)
         totalHSEarned = totalHSEarned.plus(Decimal(rawData.ancients.ancients[k].spentHeroSouls));
     var currentASGain = Decimal.log10(totalHSEarned).times(5).floor().minus(as);
     $("#tp").text(fracFormat(tp.times(100)));
-    $("#maxTPReward").text(sciFormat(maxTPReward, 4));
-    $("#zoneCap").text(decFormatNoGrouping(zoneCap));
     $("#as").text(as.toString());
     $("#asGainIfTranscend").text(currentASGain.toString());
     showASGain(additionalASShow);
@@ -446,9 +477,6 @@ function compute(x) {
     for (var i in ancient) {
         if (ancient[i].Level.gt(0) && (ancient[i].Visible == "true")) {
             switch (i) {
-                case "3": //Solomon
-                    ancient[i].OptimalLevel = m.pow(0.8).div(alpha.pow(0.4)).ceil();
-                    break;
                 case "4": //Libertas
                     if ($("#wep8k").prop("checked"))
                         ancient[i].OptimalLevel = s.times(0.905).ceil();
@@ -544,7 +572,6 @@ function compute(x) {
         var y = ancient[i].OptimalLevel;
         if ((y.gt(x)) && (ancient[i].Visible === "true")) {
             switch (i) {
-                case "3":
                 case "29":
                 case "32": //n^1.5
                     temp = approSum(y).minus(approSum(x));
@@ -634,7 +661,7 @@ function optimizeAncient() {
     tb.rows[1].cells[2].innerHTML = sciFormat(hs.minus(spentHS), 4);
     tb.rows[1].cells[3].innerHTML = "-" + sciFormat(spentHS, 4);
     if (ancientTableShow == 0) {
-        for (var j = 0; j < 27; j++) {
+        for (var j = 0; j < 26; j++) {
             $("#anctable").append("<tr style=\"display: table-row;\"><td></td><td class=\"text-right\"></td><td class=\"text-right\"></td><td><input id=\"" + j + "\" class=\"form-control rs text-right bold \" type=\"text\"></input></td><td class=\"text-right\"></td></tr>");
         }
         $(".rs").map(function() {
