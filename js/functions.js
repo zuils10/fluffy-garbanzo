@@ -500,7 +500,7 @@ function compute(x) {
                         ancient[i].OptimalLevel = f.times(0.926).ceil();
                     break;
                 case "11": //Dogcog
-                    ancient[i].OptimalLevel = getNUALevel(200 * Math.log(2), 0.01, 1 / 99, m.times(0.927).pow(2), 1, 3743);
+                    ancient[i].OptimalLevel = getNUALevel(200 * Math.log(2), 0.01, 1 / 9999999999, m.times(0.927).pow(2), 1, 3743);
                     break;
                 case "12": //Fortuna
                     ancient[i].OptimalLevel = getNUALevel(800 * Math.log(2), 0.0025, 10 / 9, m.times(0.927).pow(2), -1, 14972);
@@ -521,13 +521,13 @@ function compute(x) {
                     ancient[i].OptimalLevel = getNUALevel(2 / 0.034 * Math.log(2), 0.034, 2, m.pow(2), -1, 1101);
                     break;
                 case "18": //Bubos
-                    ancient[i].OptimalLevel = getNUALevel(100 * Math.log(2), 0.02, 1, m.pow(2), 1, 1872);
+                    ancient[i].OptimalLevel = getNUALevel(100 * Math.log(2), 0.002, 1, m.pow(2), 1, 18715);
                     break;
                 case "19": //Fragsworth
                     ancient[i].OptimalLevel = f;
                     break;
                 case "21": //Kuma
-                    ancient[i].OptimalLevel = getNUALevel(200 * Math.log(2), 0.01, 0.25, m.pow(2).div(alpha), 1, 3743);
+                    ancient[i].OptimalLevel = getNUALevel(200 * Math.log(2), 0.0025, 0.25, m.pow(2).div(alpha), 1, 14972);
                     break;
                 case "28": //Argaiv
                     ancient[i].OptimalLevel = m;
