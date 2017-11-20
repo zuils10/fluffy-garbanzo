@@ -328,10 +328,10 @@ function getCurrentRatio() {
         $("#playstyleSelect").prop('selectedIndex', 0).change();
     else if (f.div(s).lt(0.1))
         $("#playstyleSelect").prop('selectedIndex', 0).change();
-    else if (f.div(s).gt(10))
+    else if (f.div(s).gt(1000))
         $("#playstyleSelect").prop('selectedIndex', 2).change();
     else {
-        ratio = f.div(s).times(20).round().div(20);
+        ratio = f.div(s).round;
         $("#hybridRatio").val(ratio.toString());
         $("#playstyleSelect").prop('selectedIndex', 1).change();
     }
@@ -819,7 +819,7 @@ $(document).ready(function() {
             ancient["19"].Visible = "true";
             ancient["29"].Visible = "true";
         }
-        
+
         //don't show Nog if player has no autoclicker
         var total_ac = Decimal(rawData.autoclickers).plus(rawData.dlcAutoclickers);
         if (total_ac.equals(0)) {
