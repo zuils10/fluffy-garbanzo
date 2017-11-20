@@ -429,7 +429,7 @@ function showOutsider() {
     tb.rows[2].cells[2].innerHTML = "-" + fracFormat(outsider[2].Multiplier.times(100)) + "% Ancient cost";
     tb.rows[3].cells[2].innerHTML = "+" + outsider[3].Multiplier.times(100).toString() + "% DPS";
     /*tb.rows[4].cells[2].innerHTML = "+" + outsider[4].Multiplier.times(100).toString() + "% maximum transcendent primal soul reward";*/
-    tb.rows[5].cells[2].innerHTML = "+" + outsider[5].Multiplier.times(100).toString() + "% effective of Solomon";
+    tb.rows[5].cells[2].innerHTML = "+" + outsider[5].Multiplier.times(100).toString() + "% Primal Hero Souls";
     tb.rows[6].cells[2].innerHTML = "+" + outsider[6].Multiplier.times(100).toString() + "% effective of Kumawakamaru";
     tb.rows[7].cells[2].innerHTML = "+" + outsider[7].Multiplier.times(100).toString() + "% effective of Atman";
     tb.rows[8].cells[2].innerHTML = "+" + outsider[8].Multiplier.times(100).toString() + "% effective of Bubos";
