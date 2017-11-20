@@ -331,7 +331,7 @@ function getCurrentRatio() {
     else if (f.div(s).gt(1000))
         $("#playstyleSelect").prop('selectedIndex', 2).change();
     else {
-        ratio = f.div(s).round;
+        ratio = f.div(s).round();
         $("#hybridRatio").val(ratio.toString());
         $("#playstyleSelect").prop('selectedIndex', 1).change();
     }
