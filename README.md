@@ -7,9 +7,17 @@ graceoflives
 This calculator is inspired by [Shruikan864](https://www.reddit.com/user/Shruikan864)'s [Rules of thumb 1.0 Spreadsheet](https://www.reddit.com/r/ClickerHeroes/comments/4nox6i/rules_of_thumb_10_spreadsheet/) and [sugima](https://www.reddit.com/user/sugima)'s [1.0 Rules of Thumb](https://www.reddit.com/r/ClickerHeroes/comments/4naohc/math_and_transcendance/).
 
 ## Last updated
-July 22, 2017.
+November 20, 2017.
 
 ## Changelogs
+### November 20, 2017
+* Nogardnit will not be leveled if player has no autoclicker.
+* Hybrid ratio is now up to 1000:1.
+
+### November 15, 2017
+* Separate between 1.0e9 and 1.0e10 calculators. The one for 1.0e9 can be found at: https://graceoflives.github.io/fluffy-garbanzo/1.0e9/.
+
+
 * Fix the bug with auto leveler; apply new encoding algorithm for the coming patch.
 * Switch to bootstrap-based themes.
 * Add new ancient: Nogardnit.
