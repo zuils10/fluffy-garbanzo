@@ -14,6 +14,7 @@ November 20, 2017.
 * Nogardnit will not be leveled if player has no autoclicker.
 * Hybrid ratio is now up to 1000:1.
 * Description of Ponyboy now match with the new patch.
+* Remember some user settings.
 
 ### November 15, 2017
 * Separate between 1.0e9 and 1.0e10 calculators. The one for 1.0e9 can be found at: https://graceoflives.github.io/fluffy-garbanzo/1.0e9/.
