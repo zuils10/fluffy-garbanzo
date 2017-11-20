@@ -51,12 +51,14 @@ var encoder = {
 
 function autoLevelAncient() {
     var result = rawData;
+    var _totalHeroSoulSpent = Decimal(0);
     for (var k in ancient)
         if ((ancient[k].Visible == "true") && (ancient[k].Level.gt(0))) {
             result.ancients.ancients[k].level = Decimal.max(ancient[k].OptimalLevel, ancient[k].Level).toExponential().toString().replace("+", "");;
             result.ancients.ancients[k].spentHeroSouls = Decimal(result.ancients.ancients[k].spentHeroSouls).plus(ancient[k].CostToOptimal).toExponential().toString().replace("+", "");;
-            result.heroSouls = Decimal(result.heroSouls).minus(ancient[k].CostToOptimal).toExponential().toString().replace("+", "");;
+            _totalHeroSoulSpent = _totalHeroSoulSpent.plus(ancient[k].CostToOptimal);            
         }
+    result.heroSouls = Decimal(result.heroSouls).minus(_totalHeroSoulSpent).toExponential().toString().replace("+", "");
     var x = encoder.encode_main(result);
     $('#modalShow textarea').text(x);
 }
