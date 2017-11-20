@@ -775,6 +775,13 @@ $(document).ready(function() {
             ancient["19"].Visible = "true";
             ancient["29"].Visible = "true";
         }
+
+        //don't show Nog if player has no autoclicker
+        var total_ac = Decimal(rawData.autoclickers).plus(rawData.dlcAutoclickers);
+        if (total_ac.equals(0)) {
+            ancient["32"].Visible = "false";
+        }
+        
         if (isSaveLoaded)
             optimizeAncient();
     });
