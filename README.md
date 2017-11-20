@@ -18,7 +18,7 @@ November 20, 2017.
 ### November 15, 2017
 * Separate between 1.0e9 and 1.0e10 calculators. The one for 1.0e9 can be found at: https://graceoflives.github.io/fluffy-garbanzo/1.0e9/.
 
-
+### From unknown past
 * Fix the bug with auto leveler; apply new encoding algorithm for the coming patch.
 * Switch to bootstrap-based themes.
 * Add new ancient: Nogardnit.
