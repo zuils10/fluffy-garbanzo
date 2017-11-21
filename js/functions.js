@@ -875,14 +875,12 @@ $(document).ready(function() {
     });
 
     //autolevel modal
-    $('#btnAutoLevel').on('click', function() {
-        autoLevelAncient();
-    });
-
     $('#btnAutoShow').on('click', function() {
-        $('#modalAsk').slideUp();
+        $('#modalAsk').slideUp();        
+        encoder.autoLevelAncient(rawData);
         $('#modalShow').delay(400).slideDown();
     });
+
     $('#modalShow textarea').on('click', function() {
         $(this).select();
     });
