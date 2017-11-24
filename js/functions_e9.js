@@ -2,6 +2,7 @@ Decimal.config({
     precision: 17
 });
 //GLOBAL VARIABLES
+var rawSaveGame = '';
 var rawData = "";
 var hs = Decimal(0);
 var ascZone = new Decimal(0);
@@ -272,12 +273,16 @@ function calcTranscendentPower() {
     return Decimal(50).minus(Decimal(49).times(totalAS.neg().div(10000).exp())).plus(outsider[3].Multiplier).div(100);
 }
 
-function getHeroSouls() {
+function getHeroSouls(flag_use_next_ascension_soul) {
     var a = Decimal(rawData.heroSouls);
-    if ($("#useNextAscensionSouls").prop("checked"))
+    if (flag_use_next_ascension_soul)
         a = a.plus(Decimal(rawData.primalSouls)).plus(Decimal(rawData.totalHeroLevels).div(2000).floor());
     $("#manualHS").val(decFormatNoGrouping(a));
     return a;
+}
+
+function showHeroSouls(hs) {
+    $("#manualHS").val(decFormatNoGrouping(hs));
 }
 
 function getAscensionZone() {
@@ -287,8 +292,11 @@ function getAscensionZone() {
     else
         var _loc2 = Decimal(0);
     var _loc3 = (_loc1.gte(_loc2)) ? _loc1 : _loc2;
-    $("#ascensionZone").val(_loc3.toString());
     return _loc3;
+}
+
+function showAscensionZone(ascZone) {
+    $("#ascensionZone").val(ascZone.toString());
 }
 
 function getCurrentRatio() {
@@ -356,7 +364,7 @@ function getNUALevel(a, b, c, d, s, threshold) {
 
 //MAIN FUNCTIONS
 function loadGame(dataInput) {
-    var SPLITTER = "Fe12NAfA3R6z4k0z";
+    rawSaveGame = dataInput;
     rawData = decoder.decode_main(dataInput);
     //load Outsiders
     for (var k in outsider) {
@@ -671,11 +679,14 @@ function showBossRaidData() {
     $("#highestBossLevel").text(highestBossLvl.toString());
 }
 
-function loadAndDoStuff(inputData) {
+function loadAndDoStuff(inputData, flag_use_next_ascension_soul) {
     var t0 = performance.now();
     loadGame(inputData);
     ascZone = getAscensionZone();
     hs = getHeroSouls();
+    showAscensionZone(ascZone);
+    hs = getHeroSouls(flag_use_next_ascension_soul);
+    showHeroSouls(hs);
     showOutsider();
     showBossRaidData();
     getCurrentRatio();
@@ -712,13 +723,13 @@ $(document).ready(function() {
         var fr = new FileReader();
         fr.readAsText($(this).prop("files")[0]);
         fr.onload = function() {
-            loadAndDoStuff(fr.result);
+            loadAndDoStuff(fr.result, $("#useNextAscensionSouls").prop("checked"));
         };
     });
 
     //load game by pasting
     $("#sg").change(function() {
-        loadAndDoStuff($(this).val());
+        loadAndDoStuff($(this).val(), $("#useNextAscensionSouls").prop("checked"));
     });
 
     $("#ascensionZone").change(function() {
@@ -734,13 +745,13 @@ $(document).ready(function() {
         if (Decimal($(this).val()).gt(0))
             hs = Decimal($(this).val());
         else
-            hs = getHeroSouls();
+            hs = getHeroSouls($("#useNextAscensionSouls").prop("checked"));
         if (isSaveLoaded)
             optimizeAncient();
     });
     $("#useNextAscensionSouls").change(function() {
         if (isSaveLoaded) {
-            hs = getHeroSouls();
+            hs = getHeroSouls($("#useNextAscensionSouls").prop("checked"));
             optimizeAncient();
             showASGain(additionalASShow);
         }
@@ -833,7 +844,7 @@ $(document).ready(function() {
     //autolevel modal
     $('#btnAutoShow').on('click', function() {
         $('#modalAsk').slideUp();        
-        encoder.autoLevelAncient(rawData);
+        encoder.autoLevelAncient(rawSaveGame, false, rawData);
         $('#modalShow').delay(400).slideDown();
     });
     

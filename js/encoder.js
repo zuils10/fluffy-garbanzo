@@ -47,8 +47,14 @@ var encoder = {
         }
         return result.join("");
     },
-    autoLevelAncient: function() {
-        let result = arguments[0];
+    autoLevelAncient: function(inputData, flag_use_next_ascension_soul, objectData) {
+        loadGame(inputData);
+        ascZone = getAscensionZone();
+        hs = getHeroSouls(flag_use_next_ascension_soul);
+        showOutsider();
+        showBossRaidData();
+        getCurrentRatio();
+        let result = objectData;
         let _totalHeroSoulSpent = Decimal(0);
         for (var k in ancient)
             if ((ancient[k].Visible == "true") && (ancient[k].Level.gt(0))) {
