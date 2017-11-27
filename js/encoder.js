@@ -57,7 +57,7 @@ var encoder = {
         let result = objectData;
         let _totalHeroSoulSpent = Decimal(0);
         for (var k in ancient)
-            if ((ancient[k].Visible == "true") && (ancient[k].Level.gt(0))) {
+            if ((ancient[k].Visible == "true") && (ancient[k].Level.gt(0)) && (ancient[k].OptimalLevel.gte(ancient[k].Level))) {
                 result.ancients.ancients[k].level = Decimal.max(ancient[k].OptimalLevel, ancient[k].Level).toExponential().toString().replace("+", "");;
                 result.ancients.ancients[k].spentHeroSouls = Decimal(result.ancients.ancients[k].spentHeroSouls).plus(ancient[k].CostToOptimal).toExponential().toString().replace("+", "");;
                 _totalHeroSoulSpent = _totalHeroSoulSpent.plus(ancient[k].CostToOptimal);
