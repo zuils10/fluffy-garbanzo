@@ -3,12 +3,10 @@ var decoder = {
 		var zlibHeader = "7a990d405d2c6fb93aa8fbb0ec1a3b23";
 		var output = '';
 		if (inputString.substring(0, 32) == zlibHeader) {
-			console.log('encode type: zlib');
 			$('#saveGameType').val('zlib');
 			output = decoder.decode_zlib(inputString);
 		}
 		else {
-			console.log('encode type: base64');
 			$('#saveGameType').val('base64');
 			output = decoder.decode_base64(inputString);
 		}

@@ -680,7 +680,6 @@ function showBossRaidData() {
 }
 
 function loadAndDoStuff(inputData, flag_use_next_ascension_soul) {
-    var t0 = performance.now();
     loadGame(inputData);
     ascZone = getAscensionZone();
     hs = getHeroSouls();
@@ -690,8 +689,6 @@ function loadAndDoStuff(inputData, flag_use_next_ascension_soul) {
     showOutsider();
     showBossRaidData();
     getCurrentRatio();
-    var t1 = performance.now();
-    console.log('Total time: ' + (t1 - t0) + ' ms.');
 }
 
 //ELEMENTS' BEHAVIORS
@@ -842,12 +839,16 @@ $(document).ready(function() {
     });
 
     //autolevel modal
-    $('#btnAutoShow').on('click', function() {
-        $('#modalAsk').slideUp();        
+    $('#btnAutoLevel').on('click', function() {
         encoder.autoLevelAncient(rawSaveGame, false, rawData);
-        $('#modalShow').delay(400).slideDown();
     });
-    
+
+    $('#btnAutoShow').on('click', function() {
+        $('#modalAsk').fadeOut();        
+        //encoder.autoLevelAncient(rawSaveGame, false, rawData);
+        $('#modalShow').delay(400).fadeIn();
+    });
+
     $('#modalShow textarea').on('click', function() {
         $(this).select();
     });

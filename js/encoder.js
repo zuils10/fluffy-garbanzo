@@ -53,7 +53,7 @@ var encoder = {
         hs = getHeroSouls(flag_use_next_ascension_soul);
         showOutsider();
         showBossRaidData();
-        getCurrentRatio();
+        $("#playstyleSelect").trigger('change');
         let result = objectData;
         let _totalHeroSoulSpent = Decimal(0);
         for (var k in ancient)
@@ -63,7 +63,8 @@ var encoder = {
                 _totalHeroSoulSpent = _totalHeroSoulSpent.plus(ancient[k].CostToOptimal);
             }
         result.heroSouls = Decimal(result.heroSouls).minus(_totalHeroSoulSpent).toExponential().toString().replace("+", "");
-        let x = encoder.encode_main(result);
-        $('#modalShow textarea').text(x);
+        let result_encoded = encoder.encode_main(result);
+        $('#modalShow textarea').text(result_encoded);
+        loadGame(inputData);
     }
 };
