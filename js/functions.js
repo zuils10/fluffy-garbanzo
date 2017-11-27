@@ -13,6 +13,7 @@ var isSaveLoaded = false;
 var additionalASShow = new Decimal(0);
 var ancient = {
     "4": {
+        "AncientId": 4,
         "Name": "Libertas",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -20,6 +21,7 @@ var ancient = {
         "Visible": "true",
     },
     "5": {
+        "AncientId": 5,
         "Name": "Siyalatas",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -27,6 +29,7 @@ var ancient = {
         "Visible": "true",
     },
     "8": {
+        "AncientId": 8,
         "Name": "Mammon",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -34,6 +37,7 @@ var ancient = {
         "Visible": "true",
     },
     "9": {
+        "AncientId": 9,
         "Name": "Mimzee",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -41,6 +45,7 @@ var ancient = {
         "Visible": "true",
     },
     "10": {
+        "AncientId": 10,
         "Name": "Pluto",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -48,6 +53,7 @@ var ancient = {
         "Visible": "false",
     },
     "11": {
+        "AncientId": 11,
         "Name": "Dogcog",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -55,6 +61,7 @@ var ancient = {
         "Visible": "true",
     },
     "12": {
+        "AncientId": 12,
         "Name": "Fortuna",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -62,6 +69,7 @@ var ancient = {
         "Visible": "true",
     },
     "13": {
+        "AncientId": 13,
         "Name": "Atman",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -69,6 +77,7 @@ var ancient = {
         "Visible": "true",
     },
     "14": {
+        "AncientId": 14,
         "Name": "Dora",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -76,6 +85,7 @@ var ancient = {
         "Visible": "true",
     },
     "15": {
+        "AncientId": 15,
         "Name": "Bhaal",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -83,6 +93,7 @@ var ancient = {
         "Visible": "false",
     },
     "16": {
+        "AncientId": 16,
         "Name": "Morgulis",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -90,6 +101,7 @@ var ancient = {
         "Visible": "true",
     },
     "17": {
+        "AncientId": 17,
         "Name": "Chronos",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -97,6 +109,7 @@ var ancient = {
         "Visible": "true",
     },
     "18": {
+        "AncientId": 18,
         "Name": "Bubos",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -104,6 +117,7 @@ var ancient = {
         "Visible": "true",
     },
     "19": {
+        "AncientId": 19,
         "Name": "Fragsworth",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -111,6 +125,7 @@ var ancient = {
         "Visible": "false",
     },
     "20": {
+        "AncientId": 20,
         "Name": "Vaagur",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -118,6 +133,7 @@ var ancient = {
         "Visible": "false",
     },
     "21": {
+        "AncientId": 21,
         "Name": "Kumawakamaru",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -125,6 +141,7 @@ var ancient = {
         "Visible": "true",
     },
     "22": {
+        "AncientId": 22,
         "Name": "Chawedo",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -132,6 +149,7 @@ var ancient = {
         "Visible": "false",
     },
     "23": {
+        "AncientId": 23,
         "Name": "Hecatoncheir",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -139,6 +157,7 @@ var ancient = {
         "Visible": "false",
     },
     "24": {
+        "AncientId": 24,
         "Name": "Berserker",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -146,6 +165,7 @@ var ancient = {
         "Visible": "false",
     },
     "25": {
+        "AncientId": 25,
         "Name": "Sniperino",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -153,6 +173,7 @@ var ancient = {
         "Visible": "false",
     },
     "26": {
+        "AncientId": 26,
         "Name": "Kleptos",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -160,6 +181,7 @@ var ancient = {
         "Visible": "false",
     },
     "27": {
+        "AncientId": 27,
         "Name": "Energon",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -167,6 +189,7 @@ var ancient = {
         "Visible": "false",
     },
     "28": {
+        "AncientId": 28,
         "Name": "Argaiv",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -174,6 +197,7 @@ var ancient = {
         "Visible": "true",
     },
     "29": {
+        "AncientId": 29,
         "Name": "Juggernaut",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -181,6 +205,7 @@ var ancient = {
         "Visible": "false",
     },
     "31": {
+        "AncientId": 31,
         "Name": "Revolc",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -188,6 +213,7 @@ var ancient = {
         "Visible": "false",
     },
     "32": {
+        "AncientId": 32,
         "Name": "Nogardnit",
         "Level": Decimal(0),
         "OptimalLevel": Decimal(0),
@@ -577,7 +603,7 @@ function compute(x) {
         var temp = Decimal(0);
         var x = ancient[i].Level;
         var y = ancient[i].OptimalLevel;
-        if ((y.gt(x)) && (ancient[i].Visible === "true")) {
+        if ((y.gt(x)) && (ancient[i].Visible === "true") && (rawData.ancientEntrySizes[i] != 1)) {
             switch (i) {
                 case "29":
                 case "32": //n^1.5
@@ -690,7 +716,7 @@ function optimizeAncient() {
         tb.rows[i].cells[2].innerHTML = sciFormat(ancientArr[k].OptimalLevel, 4);
         tb.rows[i].cells[3].firstChild.value = sciFormat(Decimal.max(0, ancientArr[k].OptimalLevel.minus(ancientArr[k].Level)), 4);
         tb.rows[i].cells[4].innerHTML = sciFormat(ancientArr[k].CostToOptimal, 4);
-        if ((ancientArr[k].Visible == "false") || (ancientArr[k].Level == 0))
+        if ((ancientArr[k].Visible == "false") || (ancientArr[k].Level == 0) || (rawData.ancientEntrySizes[ancientArr[k]["AncientId"]] == 1))
             tb.rows[i].style.display = "none";
         else
             tb.rows[i].style.display = "table-row";
