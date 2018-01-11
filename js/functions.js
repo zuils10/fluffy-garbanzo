@@ -901,7 +901,7 @@ $(document).ready(function() {
     });
     $("#buttonMoreAS").on("click", function() {
         if (isSaveLoaded) {
-            additionalASShow = Decimal.min(additionalASShow.plus(1), 27);
+            additionalASShow = Decimal.min(additionalASShow.plus(1), 97);
             showASGain(additionalASShow);
         }
     });
