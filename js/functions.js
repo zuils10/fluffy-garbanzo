@@ -458,7 +458,7 @@ function showOutsider() {
     outsider[10].Multiplier = linearX(outsider[10].Level, 100);
 
     //show data
-    tb.rows[1].cells[2].innerHTML = "+" + outsider[1].Multiplier.times(100).toString() + "% effective of all Idle bonuses";
+    tb.rows[1].cells[2].innerHTML = "+" + sciFormat(outsider[1].Multiplier.times(100), 4) + "% effective of all Idle bonuses";
     tb.rows[2].cells[2].innerHTML = "-" + fracFormat(outsider[2].Multiplier.times(100)) + "% Ancient cost";
     tb.rows[3].cells[2].innerHTML = "+" + outsider[3].Multiplier.times(100).toString() + "% DPS";
     /*tb.rows[4].cells[2].innerHTML = "+" + outsider[4].Multiplier.times(100).toString() + "% maximum transcendent primal soul reward";*/
