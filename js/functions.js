@@ -1,5 +1,5 @@
 Decimal.config({
-    precision: 17
+    precision: 13
 });
 //GLOBAL VARIABLES
 var rawSaveGame = '';
@@ -663,7 +663,7 @@ function optimizeAncient() {
             left = Decimal(0);
             right = hs.div(Decimal(1).minus(outsider[2].Multiplier)).plus(base.times(base.plus(1)).times(2)).sqrt().ceil().minus(base);
         }
-        while (right.minus(left).gt(Decimal.max(1, Decimal.max(base, right.plus(base)).times(1e-15)))) {
+        while (right.minus(left).gt(Decimal.max(1, Decimal.max(base, right.plus(base)).times(1e-11)))) {
             var mid = right.plus(left).div(2).floor();
             hsToSpend = compute(mid);
             if (ancient["16"].Level.equals(0))
