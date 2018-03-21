@@ -406,8 +406,10 @@ function getNUALevel(a, b, c, d, s, threshold) {
     var _loc1 = Decimal(b).plus(Decimal.ln(2));
     var _left = Decimal.floor(Decimal.ln(d.div(a).div(_max)).div(_loc1));
     var _right = Decimal.ceil(Decimal.ln(d.div(a).div(_min)).div(_loc1));
-    if (_left.gte(threshold)) {
-        return Decimal(threshold);
+    if (threshold > 0) {
+        if (_left.gte(threshold)) {
+            return Decimal(threshold);
+        }
     }
     for (let i = _left; i.lte(_right); i = i.plus(1)) {
         if (Decimal.pow(2 * Math.exp(b), i).times(Decimal.pow(Math.exp(1), i.times(-b)).times(s).plus(c)).gte(testvalue)) {
@@ -415,6 +417,41 @@ function getNUALevel(a, b, c, d, s, threshold) {
         }
     }
     return _right;
+}
+
+function getDogcogLevel(m, apply_limit = true) {
+    dogcog_limit = (apply_limit) ? 3743 : 0;
+    return getNUALevel(200 * Math.log(2), 0.01, 1 / 9999999999, m.times(0.927).pow(2), 1, dogcog_limit);
+}
+
+function getFortunaLevel(m, apply_limit = true) {
+    fortuna_limit = (apply_limit) ? 14972 : 0;
+    return getNUALevel(800 * Math.log(2), 0.0025, 10 / 9, m.times(0.927).pow(2), -1, fortuna_limit);
+}
+
+function getAtmanLevel(m, alpha, apply_limit = true) {
+    atman_limit = (apply_limit) ? 2880 : 0;
+    return getNUALevel(2 / 0.013 * Math.log(2), 0.013, 4 / 3, m.pow(2).div(alpha), -1, atman_limit);
+}
+
+function getDoraLevel(m, apply_limit = true) {
+    dora_limit = (apply_limit) ? 18715 : 0;
+    return getNUALevel(1000 * Math.log(2), 0.002, 100 / 99, m.times(0.927).pow(2), -1, dora_limit);
+}
+
+function getChronosLevel(m, apply_limit = true) {
+    chronos_limit = (apply_limit) ? 1101 : 0;
+    return getNUALevel(2 / 0.034 * Math.log(2), 0.034, 2, m.pow(2), -1, chronos_limit);
+}
+
+function getBubosLevel(m, apply_limit = true) {
+    bubos_limit = (apply_limit) ? 18715 : 0;
+    return getNUALevel(100 * Math.log(2), 0.002, 1, m.pow(2), 1, chronos_limit);
+}
+
+function getKumaLevel(m, alpha, apply_limit = true) {
+    kuma_limit = (apply_limit) ? 14972 : 0;
+    return getNUALevel(200 * Math.log(2), 0.0025, 0.25, m.pow(2).div(alpha), 1, kuma_limit);
 }
 
 //MAIN FUNCTIONS
@@ -506,6 +543,30 @@ function compute(x) {
             m = f;
             break;
     }
+    //get the "base level" (unlimited) for Revolc, Vaagur and skill ancients
+    switch ($("#otherAncientsLowerBase").val()) {
+        case "11":
+            var base_level_for_no_formula = getDogcogLevel(m, false);
+            break;
+        case "12":
+            var base_level_for_no_formula = getFortunaLevel(m, false);
+            break;
+        case "13":
+            var base_level_for_no_formula = getAtmanLevel(m, alpha, false);
+            break;
+        case "14":
+            var base_level_for_no_formula = getDoraLevel(m, false);
+            break;
+        case "17":
+            var base_level_for_no_formula = getChronosLevel(m, false);
+            break;
+        case "18":
+            var base_level_for_no_formula = getBubosLevel(m, false);
+            break;
+        case "21":
+            var base_level_for_no_formula = getKumaLevel(m, alpha, false);
+            break;
+    }
     //find the Optimal Level with pre-determined Siya lvl
     for (var i in ancient) {
         if (ancient[i].Level.gt(0) && (ancient[i].Visible == "true")) {
@@ -533,16 +594,16 @@ function compute(x) {
                         ancient[i].OptimalLevel = f.times(0.926).ceil();
                     break;
                 case "11": //Dogcog
-                    ancient[i].OptimalLevel = getNUALevel(200 * Math.log(2), 0.01, 1 / 9999999999, m.times(0.927).pow(2), 1, 3743);
+                    ancient[i].OptimalLevel = getDogcogLevel(m);
                     break;
                 case "12": //Fortuna
-                    ancient[i].OptimalLevel = getNUALevel(800 * Math.log(2), 0.0025, 10 / 9, m.times(0.927).pow(2), -1, 14972);
+                    ancient[i].OptimalLevel = getFortunaLevel(m);
                     break;
                 case "13": //Atman
-                    ancient[i].OptimalLevel = getNUALevel(2 / 0.013 * Math.log(2), 0.013, 4 / 3, m.pow(2).div(alpha), -1, 2880);
+                    ancient[i].OptimalLevel = getAtmanLevel(m, alpha);
                     break;
                 case "14": //Dora
-                    ancient[i].OptimalLevel = getNUALevel(1000 * Math.log(2), 0.002, 100 / 99, m.times(0.927).pow(2), -1, 18715);
+                    ancient[i].OptimalLevel = getDoraLevel(m);
                     break;
                 case "15": //Bhaal
                     ancient[i].OptimalLevel = f;
@@ -551,16 +612,16 @@ function compute(x) {
                     ancient[i].OptimalLevel = m.pow(2);
                     break;
                 case "17": //Chronos
-                    ancient[i].OptimalLevel = getNUALevel(2 / 0.034 * Math.log(2), 0.034, 2, m.pow(2), -1, 1101);
+                    ancient[i].OptimalLevel = getChronosLevel(m);
                     break;
                 case "18": //Bubos
-                    ancient[i].OptimalLevel = getNUALevel(100 * Math.log(2), 0.002, 1, m.pow(2), 1, 18715);
+                    ancient[i].OptimalLevel = getBubosLevel(m);
                     break;
                 case "19": //Fragsworth
                     ancient[i].OptimalLevel = f;
                     break;
                 case "21": //Kuma
-                    ancient[i].OptimalLevel = getNUALevel(200 * Math.log(2), 0.0025, 0.25, m.pow(2).div(alpha), 1, 14972);
+                    ancient[i].OptimalLevel = getKumaLevel(m, alpha);
                     break;
                 case "28": //Argaiv
                     ancient[i].OptimalLevel = m;
@@ -581,10 +642,10 @@ function compute(x) {
         if (ancient[i].Level.gt(0)) {
             switch (i) {
                 case "20": //Vaagur
-                    ancient[i].OptimalLevel = Decimal.min(1440, Decimal.max(ancient[$("#otherAncientsLowerBase").val()].OptimalLevel.minus($("#otherAncientsLower").val(), 0)));
+                    ancient[i].OptimalLevel = Decimal.min(1440, Decimal.max(base_level_for_no_formula.minus($("#otherAncientsLower").val(), 0)));
                     break;
                 case "31": //Revolc
-                    ancient[i].OptimalLevel = Decimal.min(3743, Decimal.max(ancient[$("#otherAncientsLowerBase").val()].OptimalLevel.minus($("#otherAncientsLower").val(), 0)));
+                    ancient[i].OptimalLevel = Decimal.min(3743, Decimal.max(base_level_for_no_formula.minus($("#otherAncientsLower").val(), 0)));
                     break;
                 case "22": //Chawedo
                 case "23": //Hecatoncheir
@@ -592,7 +653,7 @@ function compute(x) {
                 case "25": //Sniperino
                 case "26": //Kleptos
                 case "27": //Energon
-                    ancient[i].OptimalLevel = Decimal.max(ancient[$("#otherAncientsLowerBase").val()].OptimalLevel.minus($("#otherAncientsLower").val(), 0));
+                    ancient[i].OptimalLevel = Decimal.max(base_level_for_no_formula.minus($("#otherAncientsLower").val(), 0));
                     break;
             }
         }
