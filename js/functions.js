@@ -446,7 +446,7 @@ function getChronosLevel(m, apply_limit = true) {
 
 function getBubosLevel(m, apply_limit = true) {
     bubos_limit = (apply_limit) ? 18715 : 0;
-    return getNUALevel(100 * Math.log(2), 0.002, 1, m.pow(2), 1, chronos_limit);
+    return getNUALevel(100 * Math.log(2), 0.002, 1, m.pow(2), 1, bubos_limit);
 }
 
 function getKumaLevel(m, alpha, apply_limit = true) {
