@@ -450,8 +450,8 @@ function getBubosLevel(m, apply_limit = true) {
 }
 
 function getKumaLevel(m, alpha, apply_limit = true) {
-    kuma_limit = (apply_limit) ? 14972 : 0;
-    return getNUALevel(200 * Math.log(2), 0.0025, 0.25, m.pow(2).div(alpha), 1, kuma_limit);
+    kuma_limit = (apply_limit) ? 1498 : 0;
+    return getNUALevel(200 * Math.log(2), 0.025, 0.25, m.pow(2).div(alpha), 1, kuma_limit);
 }
 
 //MAIN FUNCTIONS
