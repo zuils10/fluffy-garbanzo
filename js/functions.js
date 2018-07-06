@@ -818,9 +818,9 @@ function loadAndDoStuff(inputData, flag_use_next_ascension_soul) {
 $(document).ready(function() {
     $("#useDarkTheme").change(function() {
         if ($(this).prop("checked"))
-            $("#style").attr("href", "https://bootswatch.com/3/darkly/bootstrap.min.css");
+            $("#style").attr("href", "https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/darkly/bootstrap.min.css");
         else
-            $("#style").attr("href", "https://bootswatch.com/3/flatly/bootstrap.min.css");
+            $("#style").attr("href", "https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css");
     });
 
     $("#anctable").append("<tr><td></td><td class=\"text-right\"></td><td class=\"text-right\"></td><td class=\"text-right bold\"></td><td></td></tr>");
