@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import CalculatorLatest from '@/components/CalculatorLatest';
-import CalculatorOld from '@/components/CalculatorOld';
+import CalculatorLatest from '@/pages/CalculatorLatest';
+import CalculatorOld from '@/pages/CalculatorOld';
 
 Vue.use(VueRouter);
 

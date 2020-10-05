@@ -1,12 +1,16 @@
 <template>
     <div>
-        <div class="col-xs-12 col-md-7">
-            <h1 class="text-center">ANCIENT CALCULATOR</h1>
-            <h5 class="text-center">
+        <h1 class="text-center">ANCIENT CALCULATOR</h1>
+        <h5 class="text-center">
                 <span>
                     Clicker Heroes v1.0e10 (for v1.0e9, see <router-link :to="{name: 'old'}">here</router-link>)
                 </span>
-            </h5>
+        </h5>
+        <b-col cols="12" md="7">
+            <input-save-game/>
+        </b-col>
+        <b-col cols="12" md="7">
+
             <b-card
                 border-variant="danger"
                 header="INPUT"
@@ -26,7 +30,7 @@
                     >
                         <b-form-input
                             class="col mr-1"
-                            v-model="rawSaveGame"
+                            v-model="saveGame"
                             placeholder="Paste save game here"
                         ></b-form-input>
                         <span>or</span>
@@ -54,37 +58,7 @@
                     Level 8000+ on best hero
                 </b-form-checkbox>
             </b-card>
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    INPUT
-                </div>
-                <div class="panel-body">
-                    <label>
-                        <input id="useDarkTheme" type="checkbox" name="theme"> Dark theme
-                    </label>
-                    <div class="clearfix"></div>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <input type="text" id="sg" placeholder="Paste save game here" class="form-control"
-                               style="width: 50%;" spellcheck="false">
-                        <span style="margin: auto 10px;">or</span>
-                        <button class="btn btn-warning" style="padding: 2px 15px; width: 50%;" id="btn_file_sg">Load a
-                            save game
-                        </button>
-                        <input type="file" class="form-control" style="display: none;" id="file_sg">
-                        <input type="hidden" id="saveGameType">
-                    </div>
-                    <div class="clearfix"></div>
-                    <input type="text" id="ascensionZone" placeholder="Paste ascension zone here" class="form-control">
-                    <div class="clearfix"></div>
-                    <label>
-                        <input type="checkbox" id="useNextAscensionSouls"> Use souls gained after ascension
-                    </label>
-                    <div class="clearfix"></div>
-                    <label for="wep8k">
-                        <input type="checkbox" id="wep8k"> Level 8000+ on best hero
-                    </label>
-                </div>
-            </div>
+
             <div class="panel panel-default">
                 <div class="panel-heading" style="padding: 0;">
                     <ul class="nav nav-pills">
@@ -241,7 +215,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </b-col>
         <div id="modalAutoLevel" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -272,9 +246,11 @@
 
 <script>
 import {VIEW_MODE} from '@/components/constants';
+import InputSaveGame from "@/components/InputSaveGame";
 
 export default {
     name: 'CalculatorLatest',
+    components: {InputSaveGame},
     data() {
         return {}
     },
@@ -290,12 +266,12 @@ export default {
                 this.$store.dispatch('setViewMode', value);
             }
         },
-        rawSaveGame: {
+        saveGame: {
             get() {
-                return this.$store.getters.rawSaveGame;
+                return this.$store.getters.saveGame;
             },
             set(value) {
-                this.$store.dispatch('setRawSaveGame', value);
+                this.$store.dispatch('setSaveGame', value);
             }
         },
         ascensionZone: {

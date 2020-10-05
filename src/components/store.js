@@ -1,19 +1,19 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import {VIEW_MODE} from '@/components/constants';
 
 Vue.use(Vuex);
-
 const store = new Vuex.Store({
     state: {
-        viewMode: 'light',
-        rawSaveGame: '',
+        viewMode: VIEW_MODE.LIGHT,
+        saveGame: '',
         ascensionZone: null,
         useSoulsNextAscension: false,
         highLevelBestHero: false,
     },
     getters: {
         viewMode: state => state.viewMode,
-        rawSaveGame: state => state.rawSaveGame,
+        saveGame: state => state.saveGame,
         ascensionZone: state => state.ascensionZone,
         useSoulsNextAscension: state => state.useSoulsNextAscension,
         highLevelBestHero: state => state.highLevelBestHero
@@ -22,8 +22,8 @@ const store = new Vuex.Store({
         SET_VIEW_MODE(state, value) {
             state.viewMode = value;
         },
-        SET_RAW_SAVE_GAME(state, value) {
-            state.rawSaveGame = value;
+        SET_SAVE_GAME(state, value) {
+            state.saveGame = value;
         },
         SET_ASCENSION_ZONE(state, value) {
             state.ascensionZone = value;
@@ -39,8 +39,8 @@ const store = new Vuex.Store({
         setViewMode({commit}, value) {
             commit('SET_VIEW_MODE', value);
         },
-        setRawSaveGame({commit}, value) {
-            commit('SET_RAW_SAVE_GAME', value);
+        setSaveGame({commit}, value) {
+            commit('SET_SAVE_GAME', value);
         },
         setAscensionZone({commit}, value) {
             commit('SET_ASCENSION_ZONE', value);
