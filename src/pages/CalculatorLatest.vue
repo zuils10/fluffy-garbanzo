@@ -34,9 +34,6 @@
                         <component :is="k.info"></component>
                     </b-tab>
                 </b-tabs>
-                <b-card-body>
-                    <router-view/>
-                </b-card-body>
             </b-card>
         </b-col>
         <b-col cols="12" md="7">
