@@ -1,8 +1,10 @@
 <template>
     <b-card
-        border-variant="danger"
+        class="border-0"
+        body-class="px-0 py-1"
         header="SAVE GAME"
         header-bg-variant="danger"
+        header-class="p-1"
         header-text-variant="white"
     >
         <b-container>

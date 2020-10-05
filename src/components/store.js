@@ -13,6 +13,12 @@ const store = new Vuex.Store({
     },
     getters: {
         viewMode: state => state.viewMode,
+        viewModeCss: state => {
+            if (state.viewMode === VIEW_MODE.DARK) {
+                return '';
+            }
+            return '';
+        },
         saveGame: state => state.saveGame,
         ascensionZone: state => state.ascensionZone,
         useSoulsNextAscension: state => state.useSoulsNextAscension,

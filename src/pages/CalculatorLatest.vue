@@ -1,47 +1,51 @@
 <template>
     <div>
-        <h1 class="text-center">ANCIENT CALCULATOR</h1>
-        <h5 class="text-center">
+        <b-col cols="12" md="7">
+            <h1 class="text-center">ANCIENT CALCULATOR</h1>
+            <h5 class="text-center">
                 <span>
                     Clicker Heroes v1.0e10 (for v1.0e9, see <router-link :to="{name: 'old'}">here</router-link>)
                 </span>
-        </h5>
-        <b-col cols="12" md="7">
+            </h5>
+            <input-theme/>
             <input-save-game/>
+            <b-card
+                bg-variant="transparent"
+                class="border-0"
+                no-body
+                body-class="p-0"
+            >
+                <b-tabs
+                    active-nav-item-class="bg-success"
+                    card
+                    fill
+                    nav-class="m-0"
+                    nav-wrapper-class="bg-transparent border-0 p-0"
+                    pills
+
+                    v-model="tabIndex"
+                >
+                    <b-tab
+                        no-body
+                        :title="k.title"
+                        title-link-class="py-1"
+                        v-for="k in tabs" :key="k.title"
+                    >
+                        <component :is="k.info"></component>
+                    </b-tab>
+                </b-tabs>
+                <b-card-body>
+                    <router-view/>
+                </b-card-body>
+            </b-card>
         </b-col>
         <b-col cols="12" md="7">
-
             <b-card
                 border-variant="danger"
                 header="INPUT"
                 header-bg-variant="danger"
                 header-text-variant="white"
             >
-                <b-form-checkbox
-                    v-model="viewMode"
-                    :value="VIEW_MODE.DARK"
-                    :unchecked-value="VIEW_MODE.LIGHT"
-                >
-                    Dark theme
-                </b-form-checkbox>
-                <b-container>
-                    <b-row
-                        class="align-items-center"
-                    >
-                        <b-form-input
-                            class="col mr-1"
-                            v-model="saveGame"
-                            placeholder="Paste save game here"
-                        ></b-form-input>
-                        <span>or</span>
-                        <b-button
-                            class="col ml-1"
-                            variant="warning"
-                        >
-                            Load a save game
-                        </b-button>
-                    </b-row>
-                </b-container>
                 <b-form-input
                     type="number"
                     v-model.number="ascensionZone"
@@ -246,13 +250,26 @@
 
 <script>
 import {VIEW_MODE} from '@/components/constants';
-import InputSaveGame from "@/components/InputSaveGame";
+import InputSaveGame from '@/components/InputSaveGame';
+import InputTheme from '@/components/InputTheme';
+import TabAncient from '@/components/TabAncient';
+import TabOutsider from '@/components/TabOutsider';
+import TabClan from '@/components/TabClan';
+import TabAbout from '@/components/TabAbout';
 
 export default {
     name: 'CalculatorLatest',
-    components: {InputSaveGame},
+    components: {InputTheme, InputSaveGame},
     data() {
-        return {}
+        return {
+            tabs: [
+                {title: 'ANCIENT', info: TabAncient},
+                {title: 'OUTSIDER', info: TabOutsider},
+                {title: 'CLAN', info: TabClan},
+                {title: 'ABOUT', info: TabAbout},
+            ],
+            tabIndex: 0
+        }
     },
     created() {
         this.VIEW_MODE = VIEW_MODE;
