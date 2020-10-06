@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <b-container
+        class="px-1"
+        fluid="true"
+    >
         <b-col cols="12" md="7">
             <h1 class="text-center">ANCIENT CALCULATOR</h1>
             <h5 class="text-center">
@@ -22,8 +25,6 @@
                     nav-class="m-0"
                     nav-wrapper-class="bg-transparent border-0 p-0"
                     pills
-
-                    v-model="tabIndex"
                 >
                     <b-tab
                         no-body
@@ -37,29 +38,6 @@
             </b-card>
         </b-col>
         <b-col cols="12" md="7">
-            <b-card
-                border-variant="danger"
-                header="INPUT"
-                header-bg-variant="danger"
-                header-text-variant="white"
-            >
-                <b-form-input
-                    type="number"
-                    v-model.number="ascensionZone"
-                    placeholder="Paste ascension zone here"
-                ></b-form-input>
-                <b-form-checkbox
-                    v-model="useSoulsNextAscension"
-                >
-                    Use souls gained after ascension
-                </b-form-checkbox>
-                <b-form-checkbox
-                    v-model="highLevelBestHero"
-                >
-                    Level 8000+ on best hero
-                </b-form-checkbox>
-            </b-card>
-
             <div class="panel panel-default">
                 <div class="panel-heading" style="padding: 0;">
                     <ul class="nav nav-pills">
@@ -242,11 +220,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </b-container>
 </template>
 
 <script>
-import {VIEW_MODE} from '@/components/constants';
 import InputSaveGame from '@/components/InputSaveGame';
 import InputTheme from '@/components/InputTheme';
 import TabAncient from '@/components/TabAncient';
@@ -264,53 +241,7 @@ export default {
                 {title: 'OUTSIDER', info: TabOutsider},
                 {title: 'CLAN', info: TabClan},
                 {title: 'ABOUT', info: TabAbout},
-            ],
-            tabIndex: 0
-        }
-    },
-    created() {
-        this.VIEW_MODE = VIEW_MODE;
-    },
-    computed: {
-        viewMode: {
-            get() {
-                return this.$store.getters.viewMode;
-            },
-            set(value) {
-                this.$store.dispatch('setViewMode', value);
-            }
-        },
-        saveGame: {
-            get() {
-                return this.$store.getters.saveGame;
-            },
-            set(value) {
-                this.$store.dispatch('setSaveGame', value);
-            }
-        },
-        ascensionZone: {
-            get() {
-                return this.$store.getters.ascensionZone;
-            },
-            set(value) {
-                this.$store.dispatch('setAscensionZone', value);
-            }
-        },
-        useSoulsNextAscension: {
-            get() {
-                return this.$store.getters.useSoulsNextAscension;
-            },
-            set(value) {
-                this.$store.dispatch('setUseSoulsNextAscension', value);
-            }
-        },
-        highLevelBestHero: {
-            get() {
-                return this.$store.getters.highLevelBestHero;
-            },
-            set(value) {
-                this.$store.dispatch('setHighLevelBestHero', value);
-            }
+            ]
         }
     }
 }

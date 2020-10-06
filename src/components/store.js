@@ -5,7 +5,7 @@ import {VIEW_MODE} from '@/components/constants';
 Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
-        viewMode: VIEW_MODE.LIGHT,
+        viewMode: localStorage.viewMode || VIEW_MODE.LIGHT,
         saveGame: '',
         ascensionZone: null,
         useSoulsNextAscension: false,
@@ -43,6 +43,7 @@ const store = new Vuex.Store({
     },
     actions: {
         setViewMode({commit}, value) {
+            localStorage.viewMode = value;
             commit('SET_VIEW_MODE', value);
         },
         setSaveGame({commit}, value) {
