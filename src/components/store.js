@@ -10,6 +10,8 @@ const store = new Vuex.Store({
         ascensionZone: null,
         useSoulsNextAscension: false,
         highLevelBestHero: false,
+        playStyle: '',
+        hybridRatio: 1,
     },
     getters: {
         viewMode: state => state.viewMode,
@@ -22,7 +24,9 @@ const store = new Vuex.Store({
         saveGame: state => state.saveGame,
         ascensionZone: state => state.ascensionZone,
         useSoulsNextAscension: state => state.useSoulsNextAscension,
-        highLevelBestHero: state => state.highLevelBestHero
+        highLevelBestHero: state => state.highLevelBestHero,
+        playStyle: state => state.playStyle,
+        hybridRatio: state => state.hybridRatio
     },
     mutations: {
         SET_VIEW_MODE(state, value) {
@@ -39,6 +43,12 @@ const store = new Vuex.Store({
         },
         SET_HIGH_LEVEL_BEST_HERO(state, value) {
             state.highLevelBestHero = value;
+        },
+        SET_PLAY_STYLE(state, value) {
+            state.playStyle = value;
+        },
+        SET_HYBRID_RATIO(state, value) {
+            state.hybridRatio = value;
         }
     },
     actions: {
@@ -57,6 +67,12 @@ const store = new Vuex.Store({
         },
         setHighLevelBestHero({commit}, value) {
             commit('SET_HIGH_LEVEL_BEST_HERO', value);
+        },
+        setPlayStyle({commit}, value) {
+            commit('SET_PLAY_STYLE', value);
+        },
+        setHybridRatio({commit}, value) {
+            commit('SET_HYBRID_RATIO', value);
         }
     }
 });
