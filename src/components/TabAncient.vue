@@ -102,7 +102,7 @@
 </template>
 
 <script>
-import {PLAY_STYLE, PLAY_STYLE_NAME, LEVEL_OTHER_ANCIENT_BASE_NAME} from '@/components/constants';
+import {LEVEL_OTHER_ANCIENT_BASE_NAME, PLAY_STYLE, PLAY_STYLE_NAME} from '@/modules/constants';
 
 export default {
     name: 'TabAncient',
@@ -119,9 +119,6 @@ export default {
             playStyleOptions: _playStyleOptions,
             levelOtherAncientBaseOptions: LEVEL_OTHER_ANCIENT_BASE_NAME
         }
-    },
-    created() {
-
     },
     computed: {
         ascensionZone: {
@@ -153,7 +150,9 @@ export default {
                 return this.$store.getters.playStyle
             },
             set(value) {
-                this.$store.dispatch('setPlayStyle', value)
+                if (value !== this.$store.getters.playStyle) {
+                    this.$store.dispatch('setPlayStyle', value)
+                }
             }
         },
         hybridRatio: {
@@ -161,7 +160,9 @@ export default {
                 return this.$store.getters.hybridRatio
             },
             set(value) {
-                this.$store.dispatch('setHybridRatio', value)
+                if (value !== this.$store.getters.hybridRatio) {
+                    this.$store.dispatch('setHybridRatio', value)
+                }
             }
         },
         levelOtherAncient: {
@@ -199,7 +200,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

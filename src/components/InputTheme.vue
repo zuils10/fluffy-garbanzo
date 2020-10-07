@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {VIEW_MODE} from '@/components/constants';
+import {VIEW_MODE} from '@/modules/constants';
 
 export default {
     name: 'InputTheme',

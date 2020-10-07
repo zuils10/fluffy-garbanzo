@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import codec from './codec';
+import codec from '@/modules/codec';
 
 export default {
     name: 'InputSaveGame',

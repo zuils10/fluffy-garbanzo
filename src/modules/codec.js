@@ -1,6 +1,6 @@
 import pako from 'pako';
 
-let codec = {
+const codec = {
     ANTI_CHEAT_CODE: 'Fe12NAfA3R6z4k0z',
     SALT: 'af0ik392jrmt0nsfdghy0',
     ZLIB_HEADER: '7a990d405d2c6fb93aa8fbb0ec1a3b23',

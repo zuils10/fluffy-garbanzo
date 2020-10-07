@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {ANCIENT, VIEW_MODE} from '@/components/constants';
+import {ANCIENT, VIEW_MODE} from '@/modules/constants';
+import optimize from '@/modules/optimize';
 
 Vue.use(Vuex);
 const store = new Vuex.Store({
@@ -11,7 +12,7 @@ const store = new Vuex.Store({
         useSoulsNextAscension: false,
         highLevelBestHero: false,
         playStyle: '',
-        hybridRatio: 1,
+        hybridRatio: null,
         levelOtherAncient: false,
         levelOtherAncientOffset: 5,
         levelOtherAncientBase: ANCIENT.CHRONOS
@@ -71,8 +72,33 @@ const store = new Vuex.Store({
             localStorage.viewMode = value;
             commit('SET_VIEW_MODE', value);
         },
-        setSaveGame({commit}, value) {
+        setSaveGame({commit, state}, value) {
             commit('SET_SAVE_GAME', value);
+            let {
+                ascensionZone: newAscensionZone,
+                playStyle: newPlayStyle,
+                hybridRatio: newHybridRatio
+            } = optimize.getGameAttributes(value, {
+                ascensionZone: state.ascensionZone,
+                playStyle: state.playStyle,
+                hybridRatio: state.hybridRatio
+            });
+            if (newAscensionZone !== state.ascensionZone) {
+                commit('SET_ASCENSION_ZONE', newAscensionZone);
+            }
+            if (newPlayStyle !== state.playStyle) {
+                commit('SET_PLAY_STYLE', newPlayStyle);
+            }
+            if (newHybridRatio !== state.hybridRatio) {
+                commit('SET_HYBRID_RATIO', newHybridRatio);
+            }
+            optimize.spending(value, {
+                ascensionZone: state.ascensionZone,
+                useSoulsNextAscension: state.useSoulsNextAscension,
+                playStyle: state.playStyle,
+                hybridRatio: state.hybridRatio,
+                levelOtherAncient: state.levelOtherAncient
+            });
         },
         setAscensionZone({commit}, value) {
             commit('SET_ASCENSION_ZONE', value);

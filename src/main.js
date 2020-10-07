@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
-import router from '@/components/router';
-import store from '@/components/store';
+import router from '@/modules/router';
+import store from '@/modules/store';
 import '@/assets/scss/app.scss';
 
 Vue.config.productionTip = false;
