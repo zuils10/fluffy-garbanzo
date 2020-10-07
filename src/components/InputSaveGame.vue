@@ -13,12 +13,13 @@
             >
                 <b-form-input
                     class="col mr-1"
-                    v-model="saveGame"
+                    v-model="loadedData"
                     placeholder="Paste save game here"
                 ></b-form-input>
                 <span>or</span>
                 <b-button
                     class="col ml-1"
+                    @click="selectFile"
                     variant="warning"
                 >
                     Load a save game
@@ -29,17 +30,38 @@
 </template>
 
 <script>
+import codec from './codec';
+
 export default {
     name: 'InputSaveGame',
-    computed: {
-        saveGame: {
-            get() {
-                return this.$store.getters.saveGame;
-            },
-            set(value) {
-                this.$store.dispatch('setSaveGame', value);
+    data() {
+        return {
+            loadedData: '',
+        }
+    },
+    watch: {
+        loadedData(newValue) {
+            try {
+                const decodedData = codec.decoder(newValue);
+                this.$store.dispatch('setSaveGame', decodedData);
+            } catch (e) {
+                alert(e.message);
             }
-        },
+        }
+    },
+    methods: {
+        selectFile() {
+            let inputFile = document.createElement('input');
+            inputFile.type = 'file';
+            inputFile.addEventListener('change', e => {
+                let fr = new FileReader();
+                fr.onload = () => {
+                    this.loadedData = fr.result;
+                };
+                fr.readAsText(e.target.files[0]);
+            });
+            inputFile.click();
+        }
     }
 }
 </script>

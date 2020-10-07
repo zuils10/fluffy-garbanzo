@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {VIEW_MODE} from '@/components/constants';
+import {ANCIENT, VIEW_MODE} from '@/components/constants';
 
 Vue.use(Vuex);
 const store = new Vuex.Store({
@@ -12,6 +12,9 @@ const store = new Vuex.Store({
         highLevelBestHero: false,
         playStyle: '',
         hybridRatio: 1,
+        levelOtherAncient: false,
+        levelOtherAncientOffset: 5,
+        levelOtherAncientBase: ANCIENT.CHRONOS
     },
     getters: {
         viewMode: state => state.viewMode,
@@ -26,7 +29,10 @@ const store = new Vuex.Store({
         useSoulsNextAscension: state => state.useSoulsNextAscension,
         highLevelBestHero: state => state.highLevelBestHero,
         playStyle: state => state.playStyle,
-        hybridRatio: state => state.hybridRatio
+        hybridRatio: state => state.hybridRatio,
+        levelOtherAncient: state => state.levelOtherAncient,
+        levelOtherAncientOffset: state => state.levelOtherAncientOffset,
+        levelOtherAncientBase: state => state.levelOtherAncientBase
     },
     mutations: {
         SET_VIEW_MODE(state, value) {
@@ -49,7 +55,16 @@ const store = new Vuex.Store({
         },
         SET_HYBRID_RATIO(state, value) {
             state.hybridRatio = value;
-        }
+        },
+        SET_LEVEL_OTHER_ANCIENT(state, value) {
+            state.levelOtherAncient = value;
+        },
+        SET_LEVEL_OTHER_ANCIENT_OFFSET(state, value) {
+            state.levelOtherAncientOffset = value;
+        },
+        SET_LEVEL_OTHER_ANCIENT_BASE(state, value) {
+            state.levelOtherAncientBase = value;
+        },
     },
     actions: {
         setViewMode({commit}, value) {
@@ -73,6 +88,15 @@ const store = new Vuex.Store({
         },
         setHybridRatio({commit}, value) {
             commit('SET_HYBRID_RATIO', value);
+        },
+        setLevelOtherAncient({commit}, value) {
+            commit('SET_LEVEL_OTHER_ANCIENT', value);
+        },
+        setLevelOtherAncientOffset({commit}, value) {
+            commit('SET_LEVEL_OTHER_ANCIENT_OFFSET', value);
+        },
+        setLevelOtherAncientBase({commit}, value) {
+            commit('SET_LEVEL_OTHER_ANCIENT_BASE', value);
         }
     }
 });

@@ -39,21 +39,27 @@
                     Best Hero has at least 8000 levels
                 </b-form-checkbox>
             </b-form-group>
-            <b-form-group
-                id="field-ancient-3"
-            >
-                <b-form-select
-                    class="col-md-6"
-                    :options="playStyleOptions"
-                    v-model.number="playStyle"
-                >
-                    <template v-slot:first>
-                        <b-form-select-option value="" disabled>Select your preferred play style</b-form-select-option>
-                    </template>
-                </b-form-select>
+            <b-row>
                 <b-form-group
-                    class="col-md-6"
+                    class="col-md"
+                    label="Play style:"
+                    id="field-ancient-3"
+                >
+                    <b-form-select
+                        :options="playStyleOptions"
+                        v-model.number="playStyle"
+                    >
+                        <template v-slot:first>
+                            <b-form-select-option value="" disabled>Select your preferred play style
+                            </b-form-select-option>
+                        </template>
+                    </b-form-select>
+
+                </b-form-group>
+                <b-form-group
+                    class="col-md"
                     label="Frag/Siya ratio:"
+                    id="field-ancient-4"
                     v-if="playStyleIsHybrid"
                 >
                     <b-form-input
@@ -64,13 +70,39 @@
                         v-model="hybridRatio"
                     />
                 </b-form-group>
+            </b-row>
+            <b-form-group class="col-12">
+                <b-row align-h="start" align-v="center">
+                    <b-form-checkbox
+                        id="checkbox-level-other-ancient"
+                        v-model="levelOtherAncient"
+                    >
+                        Vaagur, Revolc and skill ancients are
+                    </b-form-checkbox>
+                    <b-form-input
+                        class="col"
+                        number
+                        v-model="levelOtherAncientOffset"
+                    />
+                    <span>level lower than</span>
+                    <b-form-select
+                        class="col"
+                        :options="levelOtherAncientBaseOptions"
+                        v-model.number="levelOtherAncientBase"
+                    >
+                        <template v-slot:first>
+                            <b-form-select-option value="" disabled>Select base ancient
+                            </b-form-select-option>
+                        </template>
+                    </b-form-select>
+                </b-row>
             </b-form-group>
         </b-collapse>
     </b-container>
 </template>
 
 <script>
-import {PLAY_STYLE, PLAY_STYLE_NAME} from '@/components/constants';
+import {PLAY_STYLE, PLAY_STYLE_NAME, LEVEL_OTHER_ANCIENT_BASE_NAME} from '@/components/constants';
 
 export default {
     name: 'TabAncient',
@@ -84,7 +116,8 @@ export default {
         });
         return {
             optionVisibility: false,
-            playStyleOptions: _playStyleOptions
+            playStyleOptions: _playStyleOptions,
+            levelOtherAncientBaseOptions: LEVEL_OTHER_ANCIENT_BASE_NAME
         }
     },
     created() {
@@ -129,6 +162,30 @@ export default {
             },
             set(value) {
                 this.$store.dispatch('setHybridRatio', value)
+            }
+        },
+        levelOtherAncient: {
+            get() {
+                return this.$store.getters.levelOtherAncient
+            },
+            set(value) {
+                this.$store.dispatch('setLevelOtherAncient', value)
+            }
+        },
+        levelOtherAncientOffset: {
+            get() {
+                return this.$store.getters.levelOtherAncientOffset
+            },
+            set(value) {
+                this.$store.dispatch('setLevelOtherAncientOffset', value)
+            }
+        },
+        levelOtherAncientBase: {
+            get() {
+                return this.$store.getters.levelOtherAncientBase
+            },
+            set(value) {
+                this.$store.dispatch('setLevelOtherAncientBase', value)
             }
         },
         playStyleIsHybrid() {
