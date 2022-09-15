@@ -32,10 +32,10 @@ var ls = {
 	saveSettings: function() {
 		var object_ls = window.localStorage;
 		$('#useDarkTheme').on('change', function() {
-			object_ls.setItem('theme', $('#useDarkTheme').prop('checked') ? 1 : 0);
+			object_ls.setItem('theme', $('#useDarkTheme').is(':checked') ? 1 : 0);
 		});
 		$('#flagCalculateOtherAncients').on('change', function() {
-			object_ls.setItem('flagCalculateOtherAncients', $('#flagCalculateOtherAncients').val() ? 1 : 0);
+			object_ls.setItem('flagCalculateOtherAncients', $('#flagCalculateOtherAncients').is(':checked') ? 1 : 0);
 		});
 		$('#otherAncientsLower').on('change', function() {
 			object_ls.setItem('otherAncientsLower', $('#otherAncientsLower').val());

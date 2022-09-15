@@ -7,9 +7,15 @@ graceoflives
 This calculator is inspired by [Shruikan864](https://www.reddit.com/user/Shruikan864)'s [Rules of thumb 1.0 Spreadsheet](https://www.reddit.com/r/ClickerHeroes/comments/4nox6i/rules_of_thumb_10_spreadsheet/) and [sugima](https://www.reddit.com/user/sugima)'s [1.0 Rules of Thumb](https://www.reddit.com/r/ClickerHeroes/comments/4naohc/math_and_transcendance/).
 
 ## Last updated
-January 11, 2018.
+March 21, 2018.
 
 ## Changelogs
+### March 21, 2018
+* Remove level restrictions for skill ancients.
+
+### January 19, 2018
+* Add back About tab.
+
 ### January 11, 2018
 * Increase view for +AS gain from 30 to 100.
 
