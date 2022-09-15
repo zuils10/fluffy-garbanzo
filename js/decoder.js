@@ -6,12 +6,10 @@ var decoder = {
 		if (inputString.substring(0, 32) == zlibHeader) {
 			$('#saveGameType').val('zlib');
 			output = decoder.decode_zlib(inputString);
-			console.log("zlib");
 		}
 		else if (inputString.substring(0, 32) == deflateHeader) {
 			$('#saveGameType').val('deflate');
 			output = decoder.decode_deflate(inputString);
-			console.log("deflate");
 		}
 		else {
 			$('#saveGameType').val('base64');
