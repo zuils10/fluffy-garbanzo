@@ -321,7 +321,94 @@ function sciFormat(num, decimalPoint) {
 //SUPPORT FUNCTIONS
 function calcTranscendentPower() {
     var totalAS = Decimal(rawData.ancientSoulsTotal);
-    return Decimal(25).minus(Decimal(23).times(totalAS.times(-0.0003).exp())).div(100);
+		if (totalAS.equals(0))
+				return Decimal(0);
+		else if (totalAS.lt(70)) 
+				return Decimal(.02);
+		else if (totalAS.lt(300))
+				return Decimal(.03);
+		else if (totalAS.lt(1250))
+				return Decimal(.04);
+		else if (totalAS.lt(2550))
+				return Decimal(.06);
+		else if (totalAS.lt(4000))
+				return Decimal(.07);
+		else if (totalAS.lt(6400))
+				return Decimal(.08);
+		else if (totalAS.lt(18000))
+				return Decimal(.1);
+		else if (totalAS.lt(40000))
+				return Decimal(.15);
+		else if (totalAS.lt(65000))
+				return Decimal(.2);
+		else if (totalAS.lt(102000))
+				return Decimal(.25);
+		else if (totalAS.lt(145000))
+				return Decimal(.3);
+		else if (totalAS.lt(190000))
+				return Decimal(.35);
+		else if (totalAS.lt(240000))
+				return Decimal(.4);
+		else if (totalAS.lt(350000))
+				return Decimal(.45);
+		else if (totalAS.lt(485000))
+				return Decimal(.5);
+		else if (totalAS.lt(666000))
+				return Decimal(.55);
+		else if (totalAS.lt(840000))
+				return Decimal(.6);
+		else if (totalAS.lt(1200000))
+				return Decimal(.7);
+		else if (totalAS.lt(1950000))
+				return Decimal(.8);
+		else if (totalAS.lt(2850000))
+				return Decimal(.9);
+		else if (totalAS.lt(Decimal('1e+308')))
+				return Decimal(1);
+		else
+				return Decimal(25).minus(Decimal(23).times(totalAS.times(-0.0003).exp())).div(100);
+}
+
+function calcHPScale() {
+		var totalAS = Decimal(rawData.ancientSoulsTotal);
+		if (ascZone.gte(3500000) && totalAS.gte(2850000))
+				return Decimal(4);
+		else if (ascZone.gte(3000000) && totalAS.gte(1950000))
+				return Decimal(3.6);
+		else if (ascZone.gte(2500000) && totalAS.gte(1200000))
+				return Decimal(3.3);
+		else if (ascZone.gte(2000000) && totalAS.gte(825000))
+				return Decimal(3);
+		else if (ascZone.gte(1500000) && totalAS.gte(666000))
+				return Decimal(2.65);
+		else if (ascZone.gte(1400000) && totalAS.gte(485000))
+				return Decimal(2.45);
+		else if (ascZone.gte(1200000) && totalAS.gte(350000))
+				return Decimal(2.3);
+		else if (ascZone.gte(1000000) && totalAS.gte(240000))
+				return Decimal(2.1);
+		else if (ascZone.gte(500000) && totalAS.gte(190000))
+				return Decimal(1.95);
+		else if (ascZone.gte(480000) && totalAS.gte(145000))
+				return Decimal(1.85);
+		else if (ascZone.gte(380000) && totalAS.gte(102000))
+				return Decimal(1.75);
+		else if (ascZone.gte(370000) && totalAS.gte(65000))
+				return Decimal(1.65);
+		else if (ascZone.gte(360000) && totalAS.gte(40000))
+				return Decimal(1.55);
+		else if (ascZone.gte(250000) && totalAS.gte(18000))
+				return Decimal(1.45);
+		else if (ascZone.gte(150000) && totalAS.gte(6400))
+				return Decimal(1.354);
+		else if (ascZone.gte(65000) && totalAS.gte(4000))
+				return Decimal(1.3);
+		else if (ascZone.gte(20000) && totalAS.gte(300))
+				return Decimal(1.175);
+		else if (ascZone.gte(5000) && totalAS.gte(70))
+				return Decimal(1.16);
+		else
+				return Decimal(1.145);
 }
 
 function getHeroSouls(flag_use_next_ascension_soul) {
@@ -429,29 +516,29 @@ function getFortunaLevel(m, apply_limit = true) {
     return getNUALevel(800 * Math.log(2), 0.0025, 10 / 9, m.times(0.927).pow(2), -1, fortuna_limit);
 }
 
-function getAtmanLevel(m, alpha, apply_limit = true) {
+function getAtmanLevel(m, alpha, apply_limit = false) {
     atman_limit = (apply_limit) ? 2880 : 0;
     return getNUALevel(2 / 0.013 * Math.log(2), 0.013, 4 / 3, m.pow(2).div(alpha), -1, atman_limit);
 }
 
-function getDoraLevel(m, apply_limit = true) {
+function getDoraLevel(m, apply_limit = false) {
     dora_limit = (apply_limit) ? 18715 : 0;
     return getNUALevel(1000 * Math.log(2), 0.002, 100 / 99, m.times(0.927).pow(2), -1, dora_limit);
 }
 
-function getChronosLevel(m, apply_limit = true) {
+function getChronosLevel(m, apply_limit = false) {
     chronos_limit = (apply_limit) ? 1101 : 0;
     return getNUALevel(2 / 0.034 * Math.log(2), 0.034, 2, m.pow(2), -1, chronos_limit);
 }
 
-function getBubosLevel(m, apply_limit = true) {
+function getBubosLevel(m, apply_limit = false) {
     bubos_limit = (apply_limit) ? 18715 : 0;
     return getNUALevel(100 * Math.log(2), 0.002, 1, m.pow(2), 1, bubos_limit);
 }
 
-function getKumaLevel(m, alpha, apply_limit = true) {
-    kuma_limit = (apply_limit) ? 1498 : 0;
-    return getNUALevel(200 * Math.log(2), 0.025, 0.25, m.pow(2).div(alpha), 1, kuma_limit);
+function getKumaLevel(m, alpha, apply_limit = false) {
+    kuma_limit = (apply_limit) ? 14972 : 0;
+    return getNUALevel(200 * Math.log(2), 0.0025, 0.25, m.pow(2).div(alpha), 1, kuma_limit);
 }
 
 //MAIN FUNCTIONS
@@ -519,7 +606,7 @@ function showOutsider() {
 }
 
 function compute(x) {
-    var HPscale = Decimal(1.14).plus(ascZone.div(500).ceil().times(0.005));
+    var HPscale = calcHPScale();
     if ($("#wep8k").prop("checked"))
         var alpha = Decimal(1.1085).times(Decimal.ln(calcTranscendentPower().plus(1))).div(Decimal.ln(HPscale));
     else
@@ -630,7 +717,10 @@ function compute(x) {
                     ancient[i].OptimalLevel = f.pow(0.8).ceil();
                     break;
                 case "32": //Nogardnit
-                    ancient[i].OptimalLevel = s.pow(0.8).ceil();
+                    if ($("#wep8k").prop("checked"))
+                        ancient[i].OptimalLevel = s.times(0.905).pow(0.8).ceil();
+                    else
+                        ancient[i].OptimalLevel = s.times(0.926).pow(0.8).ceil();
                     break;
             }
         }
@@ -639,7 +729,7 @@ function compute(x) {
         if (ancient[i].Level.gt(0)) {
             switch (i) {
                 case "20": //Vaagur
-                    ancient[i].OptimalLevel = Decimal.min(1440, Decimal.max(base_level_for_no_formula.minus($("#otherAncientsLower").val(), 0)));
+                    ancient[i].OptimalLevel = Decimal.min(14400, Decimal.max(base_level_for_no_formula.minus($("#otherAncientsLower").val(), 0)));
                     break;
                 case "31": //Revolc
                     ancient[i].OptimalLevel = Decimal.min(3743, Decimal.max(base_level_for_no_formula.minus($("#otherAncientsLower").val(), 0)));
@@ -818,9 +908,9 @@ function loadAndDoStuff(inputData, flag_use_next_ascension_soul) {
 $(document).ready(function() {
     $("#useDarkTheme").change(function() {
         if ($(this).prop("checked"))
-            $("#style").attr("href", "https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/darkly/bootstrap.min.css");
+            $("#style").attr("href", "https://bootswatch.com/3/darkly/bootstrap.min.css");
         else
-            $("#style").attr("href", "https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css");
+            $("#style").attr("href", "https://bootswatch.com/3/flatly/bootstrap.min.css");
     });
 
     $("#anctable").append("<tr><td></td><td class=\"text-right\"></td><td class=\"text-right\"></td><td class=\"text-right bold\"></td><td></td></tr>");
