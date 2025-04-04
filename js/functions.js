@@ -322,93 +322,93 @@ function sciFormat(num, decimalPoint) {
 function calcTranscendentPower() {
     var totalAS = Decimal(rawData.ancientSoulsTotal);
 		if (totalAS.equals(0))
-				return Decimal(0);
+			return Decimal(0);
 		else if (totalAS.lt(70)) 
-				return Decimal(.02);
+			return Decimal(.02);
 		else if (totalAS.lt(300))
-				return Decimal(.03);
+			return Decimal(.03);
 		else if (totalAS.lt(1250))
-				return Decimal(.04);
+			return Decimal(.04);
 		else if (totalAS.lt(2550))
-				return Decimal(.06);
+			return Decimal(.06);
 		else if (totalAS.lt(4000))
-				return Decimal(.07);
+			return Decimal(.07);
 		else if (totalAS.lt(6400))
-				return Decimal(.08);
+			return Decimal(.08);
 		else if (totalAS.lt(18000))
-				return Decimal(.1);
+			return Decimal(.1);
 		else if (totalAS.lt(40000))
-				return Decimal(.15);
+			return Decimal(.15);
 		else if (totalAS.lt(65000))
-				return Decimal(.2);
+			return Decimal(.2);
 		else if (totalAS.lt(102000))
-				return Decimal(.25);
+			return Decimal(.25);
 		else if (totalAS.lt(145000))
-				return Decimal(.3);
+			return Decimal(.3);
 		else if (totalAS.lt(190000))
-				return Decimal(.35);
+			return Decimal(.35);
 		else if (totalAS.lt(240000))
-				return Decimal(.4);
+			return Decimal(.4);
 		else if (totalAS.lt(350000))
-				return Decimal(.45);
+			return Decimal(.45);
 		else if (totalAS.lt(485000))
-				return Decimal(.5);
+			return Decimal(.5);
 		else if (totalAS.lt(666000))
-				return Decimal(.55);
+			return Decimal(.55);
 		else if (totalAS.lt(840000))
-				return Decimal(.6);
+			return Decimal(.6);
 		else if (totalAS.lt(1200000))
-				return Decimal(.7);
+			return Decimal(.7);
 		else if (totalAS.lt(1950000))
-				return Decimal(.8);
+			return Decimal(.8);
 		else if (totalAS.lt(2850000))
-				return Decimal(.9);
+			return Decimal(.9);
 		else if (totalAS.lt(Decimal('1e+308')))
-				return Decimal(1);
+			return Decimal(1);
 		else
-				return Decimal(25).minus(Decimal(23).times(totalAS.times(-0.0003).exp())).div(100);
+			return Decimal(25).minus(Decimal(23).times(totalAS.times(-0.0003).exp())).div(100);
 }
 
 function calcHPScale() {
 		var totalAS = Decimal(rawData.ancientSoulsTotal);
 		if (ascZone.gte(3500000) && totalAS.gte(2850000))
-				return Decimal(4);
+			return Decimal(4);
 		else if (ascZone.gte(3000000) && totalAS.gte(1950000))
-				return Decimal(3.6);
+			return Decimal(3.6);
 		else if (ascZone.gte(2500000) && totalAS.gte(1200000))
-				return Decimal(3.3);
+			return Decimal(3.3);
 		else if (ascZone.gte(2000000) && totalAS.gte(825000))
-				return Decimal(3);
+			return Decimal(3);
 		else if (ascZone.gte(1500000) && totalAS.gte(666000))
-				return Decimal(2.65);
+			return Decimal(2.65);
 		else if (ascZone.gte(1400000) && totalAS.gte(485000))
-				return Decimal(2.45);
+			return Decimal(2.45);
 		else if (ascZone.gte(1200000) && totalAS.gte(350000))
-				return Decimal(2.3);
+			return Decimal(2.3);
 		else if (ascZone.gte(1000000) && totalAS.gte(240000))
-				return Decimal(2.1);
+			return Decimal(2.1);
 		else if (ascZone.gte(500000) && totalAS.gte(190000))
-				return Decimal(1.95);
+			return Decimal(1.95);
 		else if (ascZone.gte(480000) && totalAS.gte(145000))
-				return Decimal(1.85);
+			return Decimal(1.85);
 		else if (ascZone.gte(380000) && totalAS.gte(102000))
-				return Decimal(1.75);
+			return Decimal(1.75);
 		else if (ascZone.gte(370000) && totalAS.gte(65000))
-				return Decimal(1.65);
+			return Decimal(1.65);
 		else if (ascZone.gte(360000) && totalAS.gte(40000))
-				return Decimal(1.55);
+			return Decimal(1.55);
 		else if (ascZone.gte(250000) && totalAS.gte(18000))
-				return Decimal(1.45);
+			return Decimal(1.45);
 		else if (ascZone.gte(150000) && totalAS.gte(6400))
-				return Decimal(1.354);
+			return Decimal(1.354);
 		else if (ascZone.gte(65000) && totalAS.gte(4000))
-				return Decimal(1.3);
+			return Decimal(1.3);
 		else if (ascZone.gte(20000) && totalAS.gte(300))
-				return Decimal(1.175);
+			return Decimal(1.175);
 		else if (ascZone.gte(5000) && totalAS.gte(70))
-				return Decimal(1.16);
+			return Decimal(1.16);
 		else
-				return Decimal(1.145);
+			return Decimal(1.145);
 }
 
 function getHeroSouls(flag_use_next_ascension_soul) {
