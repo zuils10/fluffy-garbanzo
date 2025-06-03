@@ -321,94 +321,120 @@ function sciFormat(num, decimalPoint) {
 //SUPPORT FUNCTIONS
 function calcTranscendentPower() {
     var totalAS = Decimal(rawData.ancientSoulsTotal);
-		if (totalAS.equals(0))
-			return Decimal(0);
-		else if (totalAS.lt(70)) 
-			return Decimal(.02);
-		else if (totalAS.lt(300))
-			return Decimal(.03);
-		else if (totalAS.lt(1250))
-			return Decimal(.04);
-		else if (totalAS.lt(2550))
-			return Decimal(.06);
-		else if (totalAS.lt(4000))
-			return Decimal(.07);
-		else if (totalAS.lt(6400))
-			return Decimal(.08);
-		else if (totalAS.lt(18000))
-			return Decimal(.1);
-		else if (totalAS.lt(40000))
-			return Decimal(.15);
-		else if (totalAS.lt(65000))
-			return Decimal(.2);
-		else if (totalAS.lt(102000))
-			return Decimal(.25);
-		else if (totalAS.lt(145000))
-			return Decimal(.3);
-		else if (totalAS.lt(190000))
-			return Decimal(.35);
-		else if (totalAS.lt(240000))
-			return Decimal(.4);
-		else if (totalAS.lt(350000))
-			return Decimal(.45);
-		else if (totalAS.lt(485000))
-			return Decimal(.5);
-		else if (totalAS.lt(666000))
-			return Decimal(.55);
-		else if (totalAS.lt(840000))
-			return Decimal(.6);
-		else if (totalAS.lt(1200000))
-			return Decimal(.7);
-		else if (totalAS.lt(1950000))
-			return Decimal(.8);
-		else if (totalAS.lt(2850000))
-			return Decimal(.9);
-		else if (totalAS.lt(Decimal('1e+308')))
-			return Decimal(1);
-		else
-			return Decimal(25).minus(Decimal(23).times(totalAS.times(-0.0003).exp())).div(100);
+    if (totalAS.equals(0))
+        return Decimal(0);
+    else if (totalAS.lt(70)) 
+        return Decimal(.02);
+    else if (totalAS.lt(300))
+        return Decimal(.03);
+    else if (totalAS.lt(1250))
+        return Decimal(.04);
+    else if (totalAS.lt(2550))
+        return Decimal(.06);
+    else if (totalAS.lt(4000))
+        return Decimal(.07);
+    else if (totalAS.lt(6400))
+        return Decimal(.08);
+    else if (totalAS.lt(18000))
+        return Decimal(.1);
+    else if (totalAS.lt(40000))
+        return Decimal(.15);
+    else if (totalAS.lt(65000))
+        return Decimal(.2);
+    else if (totalAS.lt(102000))
+        return Decimal(.25);
+    else if (totalAS.lt(145000))
+        return Decimal(.3);
+    else if (totalAS.lt(190000))
+        return Decimal(.35);
+    else if (totalAS.lt(240000))
+        return Decimal(.4);
+    else if (totalAS.lt(350000))
+        return Decimal(.45);
+    else if (totalAS.lt(485000))
+        return Decimal(.5);
+    else if (totalAS.lt(666000))
+        return Decimal(.55);
+    else if (totalAS.lt(840000))
+        return Decimal(.6);
+    else if (totalAS.lt(1200000))
+        return Decimal(.7);
+    else if (totalAS.lt(1950000))
+        return Decimal(.8);
+    else if (totalAS.lt(2850000))
+        return Decimal(.9);
+    else if (totalAS.lt(Decimal('1e+308')))
+        return Decimal(1);
+    else
+        return Decimal(25).minus(Decimal(23).times(totalAS.times(-0.0003).exp())).div(100);
 }
 
 function calcHPScale() {
-		var totalAS = Decimal(rawData.ancientSoulsTotal);
-		if (ascZone.gte(3500000) && totalAS.gte(2850000))
-			return Decimal(4);
-		else if (ascZone.gte(3000000) && totalAS.gte(1950000))
-			return Decimal(3.6);
-		else if (ascZone.gte(2500000) && totalAS.gte(1200000))
-			return Decimal(3.3);
-		else if (ascZone.gte(2000000) && totalAS.gte(825000))
-			return Decimal(3);
-		else if (ascZone.gte(1500000) && totalAS.gte(666000))
-			return Decimal(2.65);
-		else if (ascZone.gte(1400000) && totalAS.gte(485000))
-			return Decimal(2.45);
-		else if (ascZone.gte(1200000) && totalAS.gte(350000))
-			return Decimal(2.3);
-		else if (ascZone.gte(1000000) && totalAS.gte(240000))
-			return Decimal(2.1);
-		else if (ascZone.gte(500000) && totalAS.gte(190000))
-			return Decimal(1.95);
-		else if (ascZone.gte(480000) && totalAS.gte(145000))
-			return Decimal(1.85);
-		else if (ascZone.gte(380000) && totalAS.gte(102000))
-			return Decimal(1.75);
-		else if (ascZone.gte(370000) && totalAS.gte(65000))
-			return Decimal(1.65);
-		else if (ascZone.gte(360000) && totalAS.gte(40000))
-			return Decimal(1.55);
-		else if (ascZone.gte(250000) && totalAS.gte(18000))
-			return Decimal(1.45);
-		else if (ascZone.gte(150000) && totalAS.gte(6400))
-			return Decimal(1.354);
-		else if (ascZone.gte(65000) && totalAS.gte(4000))
-			return Decimal(1.3);
-		else if (ascZone.gte(20000) && totalAS.gte(300))
-			return Decimal(1.175);
-		else if (ascZone.gte(5000) && totalAS.gte(70))
-			return Decimal(1.16);
-		else
-			return Decimal(1.145);
+    var totalAS = Decimal(rawData.ancientSoulsTotal);
+    if (ascZone.gte(3500000) && totalAS.gte(2850000))
+        return Decimal(4);
+    else if (ascZone.gte(3000000) && totalAS.gte(1950000))
+        return Decimal(3.6);
+    else if (ascZone.gte(2500000) && totalAS.gte(1200000))
+        return Decimal(3.3);
+    else if (ascZone.gte(2000000) && totalAS.gte(825000))
+        return Decimal(3);
+    else if (ascZone.gte(1500000) && totalAS.gte(666000))
+        return Decimal(2.65);
+    else if (ascZone.gte(1400000) && totalAS.gte(485000))
+        return Decimal(2.45);
+    else if (ascZone.gte(1200000) && totalAS.gte(350000))
+        return Decimal(2.3);
+    else if (ascZone.gte(1000000) && totalAS.gte(240000))
+        return Decimal(2.1);
+    else if (ascZone.gte(500000) && totalAS.gte(190000))
+        return Decimal(1.95);
+    else if (ascZone.gte(480000) && totalAS.gte(145000))
+        return Decimal(1.85);
+    else if (ascZone.gte(380000) && totalAS.gte(102000))
+        return Decimal(1.75);
+    else if (ascZone.gte(370000) && totalAS.gte(65000))
+        return Decimal(1.65);
+    else if (ascZone.gte(360000) && totalAS.gte(40000))
+        return Decimal(1.55);
+    else if (ascZone.gte(250000) && totalAS.gte(18000))
+        return Decimal(1.45);
+    else if (ascZone.gte(150000) && totalAS.gte(6400))
+        return Decimal(1.354);
+    else if (ascZone.gte(65000) && totalAS.gte(4000))
+        return Decimal(1.3);
+    else if (ascZone.gte(20000) && totalAS.gte(300))
+        return Decimal(1.175);
+    else if (ascZone.gte(5000) && totalAS.gte(70))
+        return Decimal(1.16);
+    else
+        return Decimal(1.145);
+}
+
+function isInfiniteAsc(hs) {
+    hs = Decimal.log10(hs);
+    var tp = calcTranscendentPower();
+    return (
+        (tp.equals(.02) && hs.gte(65)) ||
+        (tp.equals(.03) && hs.gte(130)) ||
+        (tp.equals(.04) && hs.gte(236)) ||
+        (tp.gte(.06) && tp.lte(.08) && hs.gte(7462)) ||
+        (tp.equals(.1) && hs.gte(14184)) ||
+        (tp.equals(.15) && hs.gte(43413)) ||
+        (tp.equals(.2) && hs.gte(163532)) ||
+        (tp.equals(.25) && hs.gte(285442)) ||
+        (tp.equals(.3) && hs.gte(383350)) ||
+        (tp.equals(.35) && hs.gte(463600)) ||
+        (tp.equals(.4) && hs.gte(530799)) ||
+        (tp.equals(.45) && hs.gte(612052)) ||
+        (tp.equals(.5) && hs.gte(696185)) ||
+        (tp.equals(.55) && hs.gte(746451)) ||
+        (tp.equals(.6) && hs.gte(801517)) ||
+        (tp.equals(.7) && hs.gte(873851)) ||
+        (tp.equals(.8) && hs.gte(919765)) ||
+        (tp.equals(.9) && hs.gte(955619)) ||
+        (tp.equals(1) && hs.gte(992703))
+    );
 }
 
 function getHeroSouls(flag_use_next_ascension_soul) {
@@ -605,9 +631,10 @@ function showOutsider() {
     showASGain(additionalASShow);
 }
 
-function compute(x) {
+function compute(x, infiniteAsc = false) {
     var HPscale = calcHPScale();
-    if ($("#wep8k").prop("checked"))
+    // if infiniteAsc is true and wep8k is false, then optimal remaining HS is 0
+    if ($("#wep8k").prop("checked") || infiniteAsc)
         var alpha = Decimal(1.1085).times(Decimal.ln(calcTranscendentPower().plus(1))).div(Decimal.ln(HPscale));
     else
         var alpha = Decimal(1.4067).times(Decimal.ln(calcTranscendentPower().plus(1))).div(Decimal.ln(HPscale));
@@ -708,7 +735,22 @@ function compute(x) {
                     ancient[i].OptimalLevel = f;
                     break;
                 case "21": //Kuma
-                    ancient[i].OptimalLevel = getKumaLevel(m, alpha);
+                    if (infiniteAsc) {
+                        // level kuma as much as possible
+                        // optimalLevel = floor(log_2(cost / (1 - chorMult) + 2 ^ (currentLevel + 1)) - 1
+
+                        let remainingHS = getHeroSouls($("#useNextAscensionSouls").prop("checked"));
+                        let multiplier = Decimal(1).minus(outsider[2].Multiplier);
+                        let baseCost = Decimal.pow(2, ancient[i].Level.plus(1));
+                        let target = remainingHS.div(multiplier).plus(baseCost);
+                        let maxLevel = Decimal.log2(target).floor().minus(1);
+                        if (maxLevel.lt(ancient[i].Level)) {
+                            maxLevel = ancient[i].Level;
+                        }
+                        ancient[i].OptimalLevel = maxLevel;
+                    } else {
+                        ancient[i].OptimalLevel = getKumaLevel(m, alpha);
+                    }
                     break;
                 case "28": //Argaiv
                     ancient[i].OptimalLevel = m;
@@ -798,7 +840,7 @@ function compute(x) {
 
 function optimizeAncient() {
     //optimize
-    if (summonedAncients != 0) { //check if no Ancient summoned
+    if (summonedAncients != 0) { //check if no Ancient summoned        
         var left, right, base, hsToSpend, hsSpare;
         if ($("#playstyleSelect").val() == "active")
             base = ancient[19].Level;
@@ -813,7 +855,7 @@ function optimizeAncient() {
         }
         while (right.minus(left).gt(Decimal.max(1, Decimal.max(base, right.plus(base)).times(1e-11)))) {
             var mid = right.plus(left).div(2).floor();
-            hsToSpend = compute(mid);
+            hsToSpend = compute(mid, isInfiniteAsc(mid) ? true : false);
             if (ancient["16"].Level.equals(0))
                 hsSpare = Decimal.pow(Decimal.max(ancient["5"].OptimalLevel, ancient["19"].OptimalLevel), 2);
             else
@@ -823,7 +865,7 @@ function optimizeAncient() {
             else
                 right = mid;
         }
-        var spentHS = compute(left);
+        var spentHS = compute(left, isInfiniteAsc(left) ? true : false);
     }
     //sort Ancients by name
     var ancientArr = [];
