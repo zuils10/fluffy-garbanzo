@@ -633,11 +633,7 @@ function showOutsider() {
 
 function compute(x, infiniteAsc = false) {
     var HPscale = calcHPScale();
-    // if infiniteAsc is true and wep8k is false, then optimal remaining HS is 0
-    if ($("#wep8k").prop("checked") || infiniteAsc)
-        var alpha = Decimal(1.1085).times(Decimal.ln(calcTranscendentPower().plus(1))).div(Decimal.ln(HPscale));
-    else
-        var alpha = Decimal(1.4067).times(Decimal.ln(calcTranscendentPower().plus(1))).div(Decimal.ln(HPscale));
+    var alpha = Decimal(1.1085).times(Decimal.ln(calcTranscendentPower().plus(1))).div(Decimal.ln(HPscale));
     var playStyle = $("#playstyleSelect").val();
     var s, f, m;
     switch (playStyle) {
@@ -686,26 +682,17 @@ function compute(x, infiniteAsc = false) {
         if (ancient[i].Level.gt(0) && (ancient[i].Visible == "true")) {
             switch (i) {
                 case "4": //Libertas
-                    if ($("#wep8k").prop("checked"))
-                        ancient[i].OptimalLevel = s.times(0.905).ceil();
-                    else
-                        ancient[i].OptimalLevel = s.times(0.926).ceil();
+                    ancient[i].OptimalLevel = s.times(0.905).ceil();
                     break;
                 case "8": //Mammon
                 case "9": //Mimzee
-                    if ($("#wep8k").prop("checked"))
-                        ancient[i].OptimalLevel = m.times(0.905).ceil();
-                    else
-                        ancient[i].OptimalLevel = m.times(0.926).ceil();
+                    ancient[i].OptimalLevel = m.times(0.905).ceil();
                     break;
                 case "5": //Siyalatas
                     ancient[i].OptimalLevel = s;
                     break;
                 case "10": //Pluto
-                    if ($("#wep8k").prop("checked"))
-                        ancient[i].OptimalLevel = f.times(0.905).ceil();
-                    else
-                        ancient[i].OptimalLevel = f.times(0.926).ceil();
+                    ancient[i].OptimalLevel = f.times(0.905).ceil();
                     break;
                 case "11": //Dogcog
                     ancient[i].OptimalLevel = getDogcogLevel(m);
@@ -759,10 +746,7 @@ function compute(x, infiniteAsc = false) {
                     ancient[i].OptimalLevel = f.pow(0.8).ceil();
                     break;
                 case "32": //Nogardnit
-                    if ($("#wep8k").prop("checked"))
-                        ancient[i].OptimalLevel = s.times(0.905).pow(0.8).ceil();
-                    else
-                        ancient[i].OptimalLevel = s.times(0.926).pow(0.8).ceil();
+                    ancient[i].OptimalLevel = s.times(0.905).pow(0.8).ceil();
                     break;
             }
         }
@@ -840,7 +824,7 @@ function compute(x, infiniteAsc = false) {
 
 function optimizeAncient() {
     //optimize
-    if (summonedAncients != 0) { //check if no Ancient summoned        
+    if (summonedAncients != 0) { //check if no Ancient summoned
         var left, right, base, hsToSpend, hsSpare;
         if ($("#playstyleSelect").val() == "active")
             base = ancient[19].Level;
@@ -1051,7 +1035,7 @@ $(document).ready(function() {
         if (isSaveLoaded)
             optimizeAncient();
     });
-    $("#hybridRatio, #wep8k").on("change", function() {
+    $("#hybridRatio").on("change", function() {
         ratio = Decimal($("#hybridRatio").val());
         if (isSaveLoaded)
             optimizeAncient();
