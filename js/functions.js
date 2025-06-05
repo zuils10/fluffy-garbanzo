@@ -596,28 +596,28 @@ function showOutsider() {
         tb.rows[k].cells[1].innerHTML = outsider[k].Level.toString();
     }
     //calculate the multipliers
-    outsider[1].Multiplier = Decimal(1.5).pow(outsider[1].Level);
+    outsider[1].Multiplier = Decimal(25.05).times(Decimal(1).minus(outsider[1].Level.times(-.04).exp()));
     outsider[2].Multiplier = Decimal(1).minus(Decimal(0.95).pow(outsider[2].Level));
     outsider[3].Multiplier = outsider[3].Level;
     /*outsider[4].Multiplier = outsider[4].Level.div(10);*/
     outsider[5].Multiplier = outsider[5].Level.pow(2).times(10);
-    outsider[6].Multiplier = linearX(outsider[6].Level, 10);
-    outsider[7].Multiplier = linearX(outsider[7].Level, 25);
-    outsider[8].Multiplier = linearX(outsider[8].Level, 50);
-    outsider[9].Multiplier = linearX(outsider[9].Level, 75);
-    outsider[10].Multiplier = linearX(outsider[10].Level, 100);
+    outsider[6].Multiplier = Decimal(0.00008).times(outsider[6].Level.pow(2)).plus(Decimal(0.1).times(outsider[6].Level)).plus(2.5);
+    outsider[7].Multiplier = Decimal(2).times(Decimal(1).minus(outsider[7].Level.times(-0.01).exp())).plus(7);
+    outsider[8].Multiplier = Decimal(0.00032).times(outsider[8].Level.pow(2)).plus(Decimal(0.4).times(outsider[8].Level)).plus(2.5);
+    outsider[9].Multiplier = Decimal(10).times(Decimal(1).minus(outsider[9].Level.times(-0.008).exp()));
+    outsider[10].Multiplier = Decimal(2).times(Decimal(1).minus(outsider[10].Level.times(-0.01).exp())).plus(6.75);
 
     //show data
-    tb.rows[1].cells[2].innerHTML = "+" + sciFormat(outsider[1].Multiplier.times(100), 4) + "% effective of all Idle bonuses";
-    tb.rows[2].cells[2].innerHTML = "-" + fracFormat(outsider[2].Multiplier.times(100)) + "% Ancient cost";
-    tb.rows[3].cells[2].innerHTML = "+" + outsider[3].Multiplier.times(100).toString() + "% DPS";
+    tb.rows[1].cells[2].innerHTML = "+" + outsider[1].Multiplier.plus(100).toFixed(2).toString() + "% to Nogardnit's effect exponent";
+    tb.rows[2].cells[2].innerHTML = "-" + fracFormat(outsider[2].Multiplier.times(100)) + "% Ancient cost.";
+    tb.rows[3].cells[2].innerHTML = "+" + sciFormat(outsider[3].Multiplier.times(100), 2) + "% DPS.";
     /*tb.rows[4].cells[2].innerHTML = "+" + outsider[4].Multiplier.times(100).toString() + "% maximum transcendent primal soul reward";*/
-    tb.rows[5].cells[2].innerHTML = "+" + outsider[5].Multiplier.times(100).toString() + "% Primal Hero Souls";
-    tb.rows[6].cells[2].innerHTML = "+" + outsider[6].Multiplier.times(100).toString() + "% effective of Kumawakamaru";
-    tb.rows[7].cells[2].innerHTML = "+" + outsider[7].Multiplier.times(100).toString() + "% effective of Atman";
-    tb.rows[8].cells[2].innerHTML = "+" + outsider[8].Multiplier.times(100).toString() + "% effective of Bubos";
-    tb.rows[9].cells[2].innerHTML = "+" + outsider[9].Multiplier.times(100).toString() + "% effective of Chronos";
-    tb.rows[10].cells[2].innerHTML = "+" + outsider[10].Multiplier.times(100).toString() + "% effective of Dora";
+    tb.rows[5].cells[2].innerHTML = "+" + sciFormat(outsider[5].Multiplier.times(10), 2) + "% Primal Hero Souls";
+    tb.rows[6].cells[2].innerHTML = "Changes the Coefficient on Kumawakamaru to " + outsider[6].Multiplier.toFixed(2).toString() + ".";
+    tb.rows[7].cells[2].innerHTML = "Changes the exponent on Atman to " + outsider[7].Multiplier.toFixed(2).toString() + ".";
+    tb.rows[8].cells[2].innerHTML = "Changes the Coefficient on Bubos to " + outsider[8].Multiplier.toFixed(2).toString() + ".";
+    tb.rows[9].cells[2].innerHTML = "+" + outsider[9].Multiplier.toFixed(2).toString() + "% Survival of mercenaries per day";
+    tb.rows[10].cells[2].innerHTML = "Changes the exponent on Dora to " + outsider[10].Multiplier.toFixed(2).toString() + ".";
 
     var tp = calcTranscendentPower();
     var as = Decimal(rawData.ancientSoulsTotal);
@@ -632,8 +632,7 @@ function showOutsider() {
 }
 
 function compute(x, infiniteAsc = false) {
-    var HPscale = calcHPScale();
-    var alpha = Decimal(1.1085).times(Decimal.ln(calcTranscendentPower().plus(1))).div(Decimal.ln(HPscale));
+    var alpha = Decimal(1.1085).times(Decimal.ln(calcTranscendentPower().plus(1))).div(Decimal.ln(calcHPScale()));
     var playStyle = $("#playstyleSelect").val();
     var s, f, m;
     switch (playStyle) {
@@ -724,7 +723,7 @@ function compute(x, infiniteAsc = false) {
                 case "21": //Kuma
                     if (infiniteAsc) {
                         // level kuma as much as possible
-                        // optimalLevel = floor(log_2(cost / (1 - chorMult) + 2 ^ (currentLevel + 1)) - 1
+                        // optimalLevel = floor(log_2(remainingHS / (1 - chorMult) + 2 ^ (currentLevel + 1)) - 1
 
                         let remainingHS = getHeroSouls($("#useNextAscensionSouls").prop("checked"));
                         let multiplier = Decimal(1).minus(outsider[2].Multiplier);
