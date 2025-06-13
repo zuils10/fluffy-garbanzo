@@ -724,7 +724,6 @@ function compute(x, infiniteAsc = false) {
                     if (infiniteAsc) {
                         // level kuma as much as possible
                         // optimalLevel = floor(log_2(remainingHS / (1 - chorMult) + 2 ^ (currentLevel + 1)) - 1
-
                         let remainingHS = getHeroSouls($("#useNextAscensionSouls").prop("checked"));
                         let multiplier = Decimal(1).minus(outsider[2].Multiplier);
                         let baseCost = Decimal.pow(2, ancient[i].Level.plus(1));
@@ -825,6 +824,7 @@ function optimizeAncient() {
     //optimize
     if (summonedAncients != 0) { //check if no Ancient summoned
         var left, right, base, hsToSpend, hsSpare;
+        var isInf = isInfiniteAsc(getHeroSouls($("#useNextAscensionSouls").prop("checked")));
         if ($("#playstyleSelect").val() == "active")
             base = ancient[19].Level;
         else
@@ -838,7 +838,7 @@ function optimizeAncient() {
         }
         while (right.minus(left).gt(Decimal.max(1, Decimal.max(base, right.plus(base)).times(1e-11)))) {
             var mid = right.plus(left).div(2).floor();
-            hsToSpend = compute(mid, isInfiniteAsc(mid) ? true : false);
+            hsToSpend = compute(mid, isInf);
             if (ancient["16"].Level.equals(0))
                 hsSpare = Decimal.pow(Decimal.max(ancient["5"].OptimalLevel, ancient["19"].OptimalLevel), 2);
             else
@@ -848,7 +848,7 @@ function optimizeAncient() {
             else
                 right = mid;
         }
-        var spentHS = compute(left, isInfiniteAsc(left) ? true : false);
+        var spentHS = compute(left, isInf);
     }
     //sort Ancients by name
     var ancientArr = [];
