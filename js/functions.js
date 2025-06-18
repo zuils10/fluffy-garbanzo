@@ -321,9 +321,7 @@ function sciFormat(num, decimalPoint) {
 //SUPPORT FUNCTIONS
 function calcTranscendentPower() {
     var totalAS = Decimal(rawData.ancientSoulsTotal);
-    if (totalAS.equals(0))
-        return Decimal(0);
-    else if (totalAS.lt(70)) 
+    if (totalAS.lt(70)) 
         return Decimal(.02);
     else if (totalAS.lt(300))
         return Decimal(.03);
